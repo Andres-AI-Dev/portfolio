@@ -18,6 +18,7 @@ interface BlogPost {
   authorAvatar: string;
   date: string;
   content: string;
+  pinned?: boolean;
 }
 
 interface Props {
@@ -27,7 +28,7 @@ interface Props {
 
 const SingleBlogPost: FC<Props> = ({ post, className }) => {
   const slug = post._meta.path.replace(/\.mdx?$/, "");
-  const { title, description, image, author, authorAvatar, date } = post;
+  const { title, description, image, author, authorAvatar, date, pinned } = post;
   const readTime = Math.ceil(
     readingTime(post.content, { wordsPerMinute: 100 }).minutes,
   );

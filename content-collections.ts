@@ -23,6 +23,7 @@ const docs = defineCollection({
     category: z.string(),
     tags: z.array(z.string()),
     seo: z.array(z.string()),
+    pinned: z.boolean().optional().default(false),
   }),
   transform: transformMDX,
 });
@@ -49,6 +50,7 @@ const posts = defineCollection({
     category: z.string(),
     tags: z.array(z.string()),
     seo: z.array(z.string()),
+    pinned: z.boolean().optional().default(false),
   }),
   transform: async (document, context) => {
     const mdx = await compileMDX(context, document, {
