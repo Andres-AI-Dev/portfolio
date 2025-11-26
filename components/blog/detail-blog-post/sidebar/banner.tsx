@@ -10,8 +10,8 @@ interface BannerProps {
 }
 
 const Banner: React.FC<BannerProps> = ({
-  title = "Hire Tim",
-  description = "Tim is the best Frontend Developer in the San Francisco Bay Area.",
+  title = "Work with Andres",
+  description = "AI Systems Architect & Researcher based in Texas.",
   imageUrl = "/images/cover.jpg",
   linkUrl = "/about",
 }) => {

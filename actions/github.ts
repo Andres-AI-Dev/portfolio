@@ -10,7 +10,7 @@ interface GitHubRepoResponse {
 const TWO_HOURS = 2 * 60 * 60;
 
 const fetchGitHubStars = cache(async (repo: string): Promise<number> => {
-  const url = `https://api.github.com/repos/DoggyDog2020/${repo}`;
+  const url = `https://api.github.com/repos/andres-ai-dev/${repo}`;
 
   const headers = {
     Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,

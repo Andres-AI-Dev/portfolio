@@ -20,15 +20,15 @@ I'm an AI Systems Architect/Engineer at HCISD and a Graduate Research Assistant 
 - Attended Google for Education Leader Series in Chicago (October 14-16, 2025)
 - AI consultant for HCISD district-wide AI implementation
 
-## ✨ Features
+## Features
 
-- ⚡️ **Performance**: Built with Next.js 15 for optimal speed and SEO
-- 🎨 **Design**: Modern UI with Tailwind CSS v4 and ShadCN UI components
-- 📝 **Blog**: MDX-powered blog system for sharing insights on AI, ML, and EdTech
-- 🔄 **State Management**: Efficient state handling with Zustand and TanStack Query v5
-- 📧 **Contact**: Integrated email functionality via Resend
+- **Performance**: Built with Next.js 15 for optimal speed and SEO
+- **Design**: Modern UI with Tailwind CSS v4 and ShadCN UI components
+- **Blog**: MDX-powered blog system for sharing insights on AI, ML, and EdTech
+- **State Management**: Efficient state handling with Zustand and TanStack Query v5
+- **Contact**: Integrated email functionality via Resend
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Framework**: Next.js 15
 - **Language**: TypeScript 5
@@ -37,12 +37,12 @@ I'm an AI Systems Architect/Engineer at HCISD and a Graduate Research Assistant 
 - **Content**: MDX, Fumadocs, Content Collection
 - **Email**: Resend
 
-## 📋 Prerequisites
+## Prerequisites
 
 - Node.js 18.0 or later
 - npm, yarn, or pnpm package manager
 
-## 🚀 Getting Started
+## Getting Started
 
 1. **Clone the repository**
 
@@ -72,7 +72,7 @@ I'm an AI Systems Architect/Engineer at HCISD and a Graduate Research Assistant 
 
 Visit `http://localhost:3000` to see your portfolio in action!
 
-## ⚙️ Configuration
+## Configuration
 
 The project uses several configuration files:
 
@@ -81,7 +81,7 @@ The project uses several configuration files:
 - `tsconfig.json` - TypeScript configuration
 - `contentlayer.config.ts` - Content management configuration
 
-## 🔐 Environment Variables
+## Environment Variables
 
 Create a `.env.local` file in the root directory with the following variables:
 
@@ -94,16 +94,16 @@ CONTACT_EMAIL=andrisgonzalis@gmail.com
 GITHUB_TOKEN=your_github_token
 ```
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License.
 
-## 📞 Contact
+## Contact
 
 Connect with me for AI consulting, collaboration, or questions about educational technology:
 
-- 📧 Email: andrisgonzalis@gmail.com
-- 💻 GitHub: [@DoggyDog2020](https://github.com/DoggyDog2020)
+- Email: andrisgonzalis@gmail.com
+- GitHub: [@andres-ai-dev](https://github.com/andres-ai-dev)
 
 ---
 

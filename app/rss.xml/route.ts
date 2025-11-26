@@ -8,8 +8,8 @@ export async function GET() {
   );
 
   const feed = new Feed({
-    title: "Tim's Blog's RSS Feed",
-    description: "Latest blog posts from Tim",
+    title: "Andres Gonzales RSS Feed",
+    description: "Latest blog posts from Andres Gonzales",
     id: getBaseUrl(),
     link: getBaseUrl(),
     language: "en",

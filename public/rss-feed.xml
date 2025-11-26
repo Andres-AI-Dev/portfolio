@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
     <rss version="2.0">
       <channel>
-        <title>Your Blog</title>
+        <title>Andres Gonzales Blog</title>
         <link>http://localhost:3000/blog</link>
-        <description>Latest posts from Tim's blog</description>
+        <description>Latest posts from Andres Gonzales</description>
         
       <item>
         <title>The Future of AI in Mobile Development 1</title>

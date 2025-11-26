@@ -15,7 +15,7 @@ const socialConfig: SocialType[] = [
     label: "Email",
   },
   {
-    href: "https://github.com/DoggyDog2020",
+    href: "https://github.com/andres-ai-dev",
     icon: GitHubIcon,
     label: "GitHub",
   },
