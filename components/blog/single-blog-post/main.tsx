@@ -44,7 +44,7 @@ const SingleBlogPost: FC<Props> = ({ post, className }) => {
           width={2400}
           height={1260}
           decoding="async"
-          className="blur-0 object-cover transition-transform duration-300 hover:scale-105"
+          className="blur-0 object-cover object-center transition-transform duration-300 hover:scale-105"
           src={imageUrl}
           style={{ color: "transparent" }}
           loading="lazy"
