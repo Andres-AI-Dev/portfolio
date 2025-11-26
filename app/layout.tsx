@@ -169,7 +169,7 @@ export default function RootLayout({
             {/* Theme provider for dark/light mode support */}
             <ThemeProvider
               attribute="class"
-              defaultTheme="light"
+              defaultTheme="dark"
               enableSystem={false}
               disableTransitionOnChange
             >
