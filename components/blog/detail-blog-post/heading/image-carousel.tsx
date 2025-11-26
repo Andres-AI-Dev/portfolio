@@ -27,18 +27,17 @@ export default function ImageCarousel({ images, title }: ImageCarouselProps) {
   if (images.length === 0) return null;
 
   return (
-    <div className="relative mx-auto w-full" style={{ maxWidth: '350px' }}>
+    <div className="relative mx-auto w-full" style={{ maxWidth: '800px' }}>
       {/* Main Image */}
-      <div className="relative overflow-hidden rounded-xl">
+      <div className="relative overflow-hidden rounded-xl" style={{ height: '450px' }}>
         <Image
           alt={`${title} - Image ${currentIndex + 1}`}
           draggable={false}
-          width={0}
-          height={0}
-          sizes="350px"
+          fill
+          sizes="800px"
           decoding="async"
           data-nimg="1"
-          className="blur-0 h-auto w-full"
+          className="blur-0 object-contain"
           priority={currentIndex === 0}
           src={images[currentIndex]}
         />
