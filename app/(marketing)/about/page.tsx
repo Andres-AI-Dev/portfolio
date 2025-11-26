@@ -114,7 +114,7 @@ export default async function AboutPage() {
                 >
                   <article id="about-me" className="mt-4">
                     <p className="text-foreground w-full text-center text-lg sm:w-auto sm:text-left">
-                      I'm an educator and innovator at heart who builds the technical infrastructure that powers learning. I'm still very much in education, I just moved from the classroom to the technical side.
+                      I&apos;m an educator and innovator at heart who builds the technical infrastructure that powers learning. I&apos;m still very much in education, I just moved from the classroom to the technical side.
                     </p>
 
                     <ul
