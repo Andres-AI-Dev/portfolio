@@ -131,6 +131,7 @@ const research = defineCollection({
     image: z.string(),
     featured: z.boolean(),
     webUrl: z.string().nullable(),
+    youtubeUrl: z.string().nullable(),
     githubUrl: z.string().nullable(),
   }),
   transform: async (document, context) => {

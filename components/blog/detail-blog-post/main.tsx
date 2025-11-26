@@ -204,7 +204,7 @@ const DetailBlogPost: FC<Props> = ({ post }) => {
                         decoding="async"
                         data-nimg="1"
                         className="blur-0 border-border aspect-video w-full rounded-lg border sm:w-[200px]"
-                        src={relatedPost.image}
+                        src={Array.isArray(relatedPost.image) ? relatedPost.image[0] : relatedPost.image}
                       />
                       <div className="flex flex-col space-y-2">
                         <p className="font-display text-foreground dark:text-white line-clamp-1 font-medium underline-offset-4 group-hover:underline">
