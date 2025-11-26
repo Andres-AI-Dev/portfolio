@@ -13,7 +13,7 @@ interface BlogPost {
   };
   title: string;
   description: string;
-  image: string;
+  image: string | string[];
   author: string;
   authorAvatar: string;
   date: string;
@@ -32,6 +32,7 @@ const SingleBlogPost: FC<Props> = ({ post, className }) => {
     readingTime(post.content, { wordsPerMinute: 100 }).minutes,
   );
   const url = `/blog/post/${slug}`;
+  const imageUrl = Array.isArray(image) ? image[0] : image;
 
   return (
     <Card
@@ -44,7 +45,7 @@ const SingleBlogPost: FC<Props> = ({ post, className }) => {
           height={1260}
           decoding="async"
           className="blur-0 object-cover transition-transform duration-300 hover:scale-105"
-          src={image}
+          src={imageUrl}
           style={{ color: "transparent" }}
           loading="lazy"
         />
@@ -55,10 +56,10 @@ const SingleBlogPost: FC<Props> = ({ post, className }) => {
       </Link>
       <div className="bg-background flex flex-1 flex-col justify-between rounded-b-lg p-6">
         <div>
-          <h2 className="font-display text-accent-foreground group-hover:text-primary line-clamp-2 text-lg font-bold transition-colors">
+          <h2 className="font-display text-accent-foreground dark:text-white group-hover:text-primary line-clamp-2 text-lg font-bold transition-colors">
             {title}
           </h2>
-          <p className="text-foreground mt-2 line-clamp-2 text-sm">
+          <p className="text-foreground dark:text-white mt-2 line-clamp-2 text-sm">
             {description}
           </p>
         </div>
@@ -68,15 +69,15 @@ const SingleBlogPost: FC<Props> = ({ post, className }) => {
               <Avatar className="size-6">
                 <AvatarImage src={authorAvatar} alt={author} />
                 <AvatarFallback>
-                  <UserRoundIcon className="text-muted-foreground size-4" />
+                  <UserRoundIcon className="text-muted-foreground dark:text-white size-4" />
                 </AvatarFallback>
               </Avatar>
             </div>
-            <time dateTime={date} className="text-muted-foreground text-sm">
+            <time dateTime={date} className="text-muted-foreground dark:text-white text-sm">
               {format(parseISO(date), "MMM dd, yyyy")}
             </time>
           </div>
-          <div className="text-muted-foreground flex items-center text-sm">
+          <div className="text-muted-foreground dark:text-white flex items-center text-sm">
             <ClockIcon className="mr-1 size-4" />
             {readTime} min read
           </div>

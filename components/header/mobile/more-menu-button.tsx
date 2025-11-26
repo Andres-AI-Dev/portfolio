@@ -17,7 +17,6 @@ import {
   SearchIcon,
 } from "lucide-react";
 import { useEffect, useState } from "react";
-import { Spotify } from "react-spotify-embed";
 import { ThemeSwitcher } from "../shared/theme-switcher";
 
 const MoreMenuButton = () => {
@@ -66,7 +65,7 @@ const MoreMenuButton = () => {
         <div className="mx-auto w-full max-w-sm">
           <DrawerHeader>
             <DrawerTitle>Settings</DrawerTitle>
-            <DrawerDescription>Search and theme settings</DrawerDescription>
+            <DrawerDescription>Search and theme options</DrawerDescription>
           </DrawerHeader>
           <div className="flex flex-col gap-6 p-4">
             <div className="flex items-center justify-center space-x-2">
@@ -86,13 +85,6 @@ const MoreMenuButton = () => {
             <div className="space-y-2">
               <h3 className="text-sm font-medium">Theme</h3>
               <ThemeSwitcher variant="toggle" />
-            </div>
-            <div className="flex items-center justify-center space-x-2">
-              <Spotify
-                wide
-                className="w-full"
-                link="https://open.spotify.com/playlist/28OAQven2H4fLmFsNEeVcY?si=z7Bj-mocSuGi2vd2CN0sFQ"
-              />
             </div>
           </div>
           <DrawerFooter>

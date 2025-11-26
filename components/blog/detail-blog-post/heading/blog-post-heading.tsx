@@ -5,6 +5,7 @@ import { FC } from "react";
 import BackButton from "./back-button";
 import InfoBarDetailDesktop from "./info-bar/info-bar-desktop";
 import InfoBarDetailMobile from "./info-bar/info-bar-mobile";
+import ImageCarousel from "./image-carousel";
 
 interface Props {
   title: string;
@@ -14,7 +15,7 @@ interface Props {
   authorName: string;
   category: string;
   readTime: number;
-  imageUrl: string;
+  imageUrl: string | string[];
 }
 
 const BlogPostDetailHeading: FC<Props> = ({
@@ -42,7 +43,7 @@ const BlogPostDetailHeading: FC<Props> = ({
           <BackButton />
         </div>
 
-        <h1 className="font-display text-accent-foreground mx-auto mt-4 mb-4 w-full max-w-3xl text-left text-4xl font-medium text-ellipsis sm:mb-0 sm:text-4xl sm:leading-[1.25]">
+        <h1 className="font-display text-accent-foreground dark:text-white mx-auto mt-4 mb-4 w-full max-w-3xl text-left text-4xl font-medium text-ellipsis sm:mb-0 sm:text-4xl sm:leading-[1.25]">
           {title}
         </h1>
 
@@ -69,20 +70,24 @@ const BlogPostDetailHeading: FC<Props> = ({
           className="sm:hidden"
         />
 
-        <p className="text-md text-foreground mx-auto line-clamp-3 w-full max-w-3xl py-6 sm:text-lg md:py-4">
+        <p className="text-md text-foreground dark:text-white mx-auto line-clamp-3 w-full max-w-3xl py-6 sm:text-lg md:py-4">
           {description}
         </p>
 
-        <Image
-          alt={title}
-          draggable={false}
-          width={768}
-          height={432}
-          decoding="async"
-          data-nimg="1"
-          className="blur-0 mx-auto aspect-[768/432] overflow-hidden rounded-xl object-cover"
-          src={imageUrl}
-        />
+        {Array.isArray(imageUrl) ? (
+          <ImageCarousel images={imageUrl} title={title} />
+        ) : (
+          <Image
+            alt={title}
+            draggable={false}
+            width={768}
+            height={432}
+            decoding="async"
+            data-nimg="1"
+            className="blur-0 mx-auto aspect-[768/432] overflow-hidden rounded-xl object-cover"
+            src={imageUrl}
+          />
+        )}
       </MotionEffect>
     </div>
   );

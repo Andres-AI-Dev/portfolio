@@ -135,6 +135,28 @@ export function DocsPage({
 
   return (
     <AnchorProvider toc={toc} single={tocOptions.single}>
+      {slot(
+        { enabled: tocEnabled, component: tocReplace },
+        <Toc>
+          {tocOptions.header}
+          <h3 className="text-fd-muted-foreground inline-flex items-center gap-1.5 text-sm">
+            <Text className="size-4" />
+            <I18nLabel label="toc" />
+          </h3>
+          <TOCScrollArea>
+            {tocOptions.style === "clerk" ? (
+              <ClerkTOCItems items={toc} />
+            ) : (
+              <TOCItems items={toc} />
+            )}
+          </TOCScrollArea>
+          {tocOptions.footer}
+        </Toc>,
+        {
+          items: toc,
+          ...tocOptions,
+        },
+      )}
       <PageBody
         {...props.container}
         className={cn(props.container?.className)}
@@ -189,28 +211,6 @@ export function DocsPage({
           {slot(props.footer, <Footer items={props.footer?.items} />)}
         </PageArticle>
       </PageBody>
-      {slot(
-        { enabled: tocEnabled, component: tocReplace },
-        <Toc>
-          {tocOptions.header}
-          <h3 className="text-fd-muted-foreground inline-flex items-center gap-1.5 text-sm">
-            <Text className="size-4" />
-            <I18nLabel label="toc" />
-          </h3>
-          <TOCScrollArea>
-            {tocOptions.style === "clerk" ? (
-              <ClerkTOCItems items={toc} />
-            ) : (
-              <TOCItems items={toc} />
-            )}
-          </TOCScrollArea>
-          {tocOptions.footer}
-        </Toc>,
-        {
-          items: toc,
-          ...tocOptions,
-        },
-      )}
     </AnchorProvider>
   );
 }

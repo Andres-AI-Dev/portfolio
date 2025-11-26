@@ -181,17 +181,17 @@
 
 .dark {
   --background: oklch(21% 0.006 285.885);
-  --foreground: oklch(70.5% 0.015 286.067);
+  --foreground: oklch(98.5% 0 0);
   --card: oklch(0.13 0.028 261.692);
   --card-foreground: oklch(0.985 0.002 247.839);
   --popover: oklch(21% 0.006 285.885);
-  --popover-foreground: oklch(70.5% 0.015 286.067);
+  --popover-foreground: oklch(98.5% 0 0);
   --primary: oklch(92% 0.004 286.32);
   --primary-foreground: oklch(21% 0.006 285.885);
   --secondary: oklch(0.278 0.033 256.848);
   --secondary-foreground: oklch(0.985 0.002 247.839);
   --muted: oklch(0.278 0.033 256.848);
-  --muted-foreground: oklch(55.2% 0.016 285.938);
+  --muted-foreground: oklch(98.5% 0 0);
   --accent: oklch(27.4% 0.006 286.033);
   --accent-foreground: oklch(98.5% 0 0);
   --destructive: oklch(0.396 0.141 25.723);
@@ -212,6 +212,13 @@
   --sidebar-accent-foreground: oklch(0.985 0.002 247.839);
   --sidebar-border: oklch(0.278 0.033 256.848);
   --sidebar-ring: oklch(0.446 0.03 256.802);
+
+  /* Override fumadocs colors to white */
+  --color-fd-foreground: hsl(0, 0%, 98%);
+  --color-fd-muted-foreground: hsl(0, 0%, 98%);
+  --color-fd-popover-foreground: hsl(0, 0%, 98%);
+  --color-fd-card-foreground: hsl(0, 0%, 98%);
+  --color-fd-accent-foreground: hsl(0, 0%, 98%);
 }
 
 /*
@@ -268,6 +275,38 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  /* Force prose text to white in dark mode */
+  .dark .prose,
+  .dark .prose p,
+  .dark .prose h1,
+  .dark .prose h2,
+  .dark .prose h3,
+  .dark .prose h4,
+  .dark .prose h5,
+  .dark .prose h6,
+  .dark .prose li,
+  .dark .prose strong,
+  .dark .prose b,
+  .dark .prose em,
+  .dark .prose i,
+  .dark .prose blockquote,
+  .dark .prose ul,
+  .dark .prose ol,
+  .dark .prose a {
+    color: hsl(0, 0%, 98%) !important;
+  }
+
+  /* Ensure all text elements in dark mode are white */
+  .dark h1,
+  .dark h2,
+  .dark h3,
+  .dark h4,
+  .dark h5,
+  .dark h6 {
+    color: hsl(0, 0%, 98%) !important;
+  }
+
   @keyframes to-down {
     0% {
       transform: translateY(calc(var(--height) * -1));

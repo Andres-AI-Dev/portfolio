@@ -19,7 +19,7 @@ interface Props {
 const renderMdxComponents = {
   p: (props: React.HTMLProps<HTMLParagraphElement>) => (
     <p
-      className="text-foreground my-2 text-lg leading-relaxed text-pretty"
+      className="text-foreground my-1 text-base leading-snug text-pretty"
       {...props}
     />
   ),
@@ -102,43 +102,25 @@ const ProjectItem: FC<Props> = ({ project, className }) => {
           }}
           inView
         >
-          <article className="z-1 mx-auto mt-4 gap-x-4 px-8 py-4 pb-3 text-center sm:px-10 sm:pb-0">
-            <h2 className="text-accent-foreground text-3xl font-bold tracking-tight text-pretty sm:text-4xl">
+          <article className="z-1 mx-auto mt-2 gap-x-4 px-6 py-3 pb-2 text-center sm:px-8 sm:pb-0">
+            <h2 className="text-accent-foreground text-2xl font-bold tracking-tight text-pretty sm:text-3xl">
               {project.title}
             </h2>
 
-            <div className="mx-auto mt-4 flex justify-center">
-              {project.githubUrl ? (
-                <GitHubStarsButton
-                  username="timtbdev"
-                  repo={project.githubUrl.split("/").pop() || ""}
-                  className="mx-auto"
-                />
-              ) : (
-                <Category
-                  category={project.category}
-                  className="text-md text-foreground font-semibold"
-                />
-              )}
-            </div>
-
             {/* Description */}
-            <div className="prose prose-sm dark:prose-invert mx-auto mt-4">
+            <div className="prose prose-sm dark:prose-invert mx-auto mt-2 line-clamp-6">
               <MDXContent code={project.mdx} components={renderMdxComponents} />
             </div>
 
-            <LinkButtons
-              learnMoreUrl={project.githubUrl || ""}
-              liveDemoUrl={
-                project.webUrl === null
-                  ? project.youtubeUrl || ""
-                  : project.webUrl
-              }
-            />
+            <LinkButtons learnMoreUrl={project.githubUrl || ""} />
           </article>
         </MotionEffect>
-        <div className="mt-6 px-8">
-          <Link href={project.webUrl || ""} target="_blank" className="group">
+        <div className="mt-4 px-6">
+          <Link
+            href={project.webUrl || ""}
+            target={project.webUrl?.startsWith('/') ? undefined : "_blank"}
+            className="group"
+          >
             <BrowserWrapper>
               <ProjectImages image={project.image} title={project.title} />
             </BrowserWrapper>

@@ -16,8 +16,8 @@ const SocialMediaAccounts: FC = () => {
         >
           <Link
             href={social.href}
-            target="_blank"
-            rel="noopener noreferrer"
+            target={social.href.startsWith('/') ? undefined : "_blank"}
+            rel={social.href.startsWith('/') ? undefined : "noopener noreferrer"}
             aria-label={social.label}
             className="group text-foreground transition-colors"
           >

@@ -1,0 +1,120 @@
+---
+title: "MAPPO in Swarm Robotics: Solving the Foraging Problem"
+description: "Exploring multi-agent reinforcement learning for coordinating robot swarms in the foraging problem using Webots simulation at UTRGV's MARS Lab"
+image: "/images/posts/mappo-swarm/cover.gif"
+author: "Andres Gonzales"
+authorAvatar: "/images/avatar.jpg"
+date: "2025-11-16"
+category: "Research"
+tags: ["Reinforcement Learning", "Swarm Robotics", "MAPPO", "Multi-Agent Systems", "Webots", "AI Research"]
+seo:
+  [
+    "MAPPO algorithm",
+    "swarm robotics",
+    "multi-agent reinforcement learning",
+    "foraging problem",
+    "Webots simulation",
+    "UTRGV MARS Lab",
+    "cooperative robotics",
+    "decentralized control",
+  ]
+---
+
+# Teaching Robots to Work Together: My Journey with MAPPO and Swarm Robotics
+
+When I started my research at UTRGV's MARS Lab, I didn't fully appreciate how hard it is to get multiple robots to cooperate. Like, you'd think if you can get one robot to do something, getting ten robots to do it together would just be ten times the work, right? Turns out it's way more complicated than that.
+
+## The Foraging Problem
+
+The problem I'm tackling is called the foraging problem, and it's one of those classic challenges in robotics that sounds simple but gets complex fast. Basically, you have a bunch of robots, and they need to find things scattered around an environment, think of them as resources or targets, and bring them back to a central base. In my case, I'm using AprilTags, those QR code looking visual markers, as the things the robots need to collect.
+
+The challenge isn't just getting each robot to find and grab stuff. It's getting them to do it efficiently as a team without bumping into each other, without all going for the same target, and without needing some central command center telling them what to do. Each robot needs to make its own decisions based on what it sees and maybe some limited communication with nearby teammates. It's the kind of problem that shows up everywhere in the real world. Search and rescue operations where drones need to cover an area, warehouse robots picking items, even environmental monitoring with distributed sensors.
+
+## Why I'm Using MAPPO
+
+Here's where Multi-Agent Proximal Policy Optimization comes in. MAPPO is a reinforcement learning algorithm designed specifically for situations where you have multiple agents that need to learn how to coordinate. It builds on PPO, which is this really stable and reliable single-agent algorithm, and extends it to handle the chaos of multiple agents learning at the same time.
+
+The brilliant thing about MAPPO is this idea called centralized training with decentralized execution. During training, all the robots learn together. They share a centralized value function that helps them understand the global picture, what's good for the team as a whole. But once they're trained and deployed, each robot acts independently based on its own observations and learned policy. No central controller needed. They're autonomous.
+
+This approach solves a bunch of problems that plague multi-agent learning. For one, it's way more sample efficient than having each robot try to learn independently. And because it uses PPO's clipping mechanism, the training stays stable even when you're dealing with the non-stationary nightmare of multiple agents learning simultaneously. Plus, it scales. You can add more robots without completely redesigning your approach.
+
+## Building the Simulation: My Webots Journey
+
+I'm doing all of this in Webots, which is this professional robot simulator. I chose Webots because it gives you realistic physics, proper sensor modeling, and this beautiful 3D visualization where you can watch the swarm behavior in real-time. Plus, Webots has models for actual commercial robots like the E-puck, which means what I learn in simulation has a path to real hardware eventually.
+
+Setting up the environment was an adventure. I went through multiple iterations, literally version 8, 9, 10, 11 of my controller code, each time refining how the robots detect and approach AprilTags. The current setup uses E-puck differential drive robots. Each one has a camera that can detect AprilTags using computer vision, basically OpenCV for image processing and the AprilTag C++ library for detection.
+
+The way it works is pretty elegant. The camera grabs an image, converts it to grayscale, runs it through the AprilTag detector, and gets back bounding boxes for any tags in view. Then I calculate which tag is the best target. Usually that's the biggest one in the frame since bigger means closer, and closer is usually better. The robot uses this visual information to control its left and right motors, turning toward the target and driving forward.
+
+## The CSWD Behavior System
+
+I developed this behavioral state machine I call CSWD, which stands for Collect, Stop, Wait, Deposit. It's the basic loop each robot follows. First, the robot searches for AprilTags by rotating in place and scanning. When it locks onto a target, it switches to approaching mode, driving toward the tag while keeping it centered in its field of view. This is where things got interesting because I had to figure out when the robot should switch targets.
+
+In version 8, I had this simple locking mechanism. Once a robot committed to a tag, it stuck with it. But that led to robots pursuing distant targets while ignoring closer ones that came into view. Version 9 tried to fix this with minimum lock durations and timeout mechanisms, but it was still too rigid. Version 10 is where I cracked it. I implemented continuous re-evaluation with a threshold. If a new tag appears that's 1.5 times larger than the current target, meaning it's about 50 percent closer, the robot switches. This aggressive re-evaluation creates this really efficient behavior where robots always go for the nearest tag.
+
+Once the robot gets close enough, it stops and signals its intent. This is the Wait phase where the robot flashes its LEDs and beeps. It's setting up for future work where I'll have robots communicate and coordinate. Then comes the Collection phase where a supervisor controller, basically the god view of the simulation, attaches the tag to the robot. The robot then turns to face the deposit base, returns while course-correcting, and deposits the tag by phasing through the base and releasing it. Then it's back to searching.
+
+## The Technical Details That Matter
+
+Let me talk about some of the nitty-gritty that made this work. The camera runs at 640 by 480 pixels with about a 57-degree field of view. The AprilTags I'm using are 5.5 centimeter cubes, though I'm also testing with quarter-size tags in version 11 to push the detection limits. The motor control is proportional. I calculate the rotation error based on where the tag center is versus where the camera center is, and that error drives how much I need to turn the left versus right wheel.
+
+One of the biggest lessons I learned was about target selection. That 1.5 times switching threshold in version 10 was the sweet spot. Go lower, like 1.2 times, and the robot flip-flops between targets constantly. Go higher, like 2 times, and it stubbornly pursues distant tags. At 1.5, you get this nice balance where the robot is responsive to better opportunities but doesn't get distracted by every little thing.
+
+The deposit base design also mattered more than I expected. I started with a taller cylinder, but robots would sometimes get stuck or miss the collision detection. In version 10, I switched to a flat red cylinder that's only 0.002 meters high. Barely off the ground. That simple change made depositing way more reliable.
+
+## What I'm Seeing: Emergent Behaviors
+
+Watching the trained swarm work is honestly pretty cool. You start to see these emergent behaviors that you didn't explicitly program. Some robots naturally focus on exploration, venturing farther out to find new tags. Others become transporters, grabbing nearby tags and making quick deposit runs. The swarm dynamically reorganizes based on where tags are clustered.
+
+The collision avoidance is decent with basic proximity sensors, though there's definitely room for improvement there. What really works well is how robots don't fight over the same targets. The aggressive switching means if two robots are heading for the same tag and one is clearly closer, the farther one will usually switch to something else as the tag appears smaller in its view.
+
+I'm seeing collection success rates around 95 percent in typical runs. Average collection time is 15 to 20 seconds per tag. Robots make 3 to 5 target switches per collection cycle, which shows they're actively optimizing. Navigation accuracy to the deposit base is within about 10 centimeters, which is solid for visual servoing.
+
+## The Challenges I'm Still Figuring Out
+
+Of course, not everything is perfect. Occlusion is a big one. If a tag ends up behind an obstacle or behind another robot, it's invisible. I don't have sophisticated path planning or obstacle navigation beyond basic bump sensors. There's also this weird issue where tags become invisible once they're attached to a robot. It's a simulation quirk, but it means robots can't see tags being carried by teammates.
+
+Lighting sensitivity is another challenge. Performance varies depending on the lighting conditions in the simulation. In the real world, this would be even worse. Shadows, glare, varying brightness, all of that would affect AprilTag detection. I've been testing with fixed lighting in version 3 of my world file to keep things consistent.
+
+The biggest conceptual challenge is credit assignment. When you have multiple robots collecting tags, how do you figure out which robot's actions actually led to success? Was it the robot that grabbed the tag? Or the robot that avoided colliding with it, creating space for the grab? MAPPO's centralized value function helps with this during training, distributing credit appropriately across the team.
+
+Then there's the non-stationarity problem. From any single robot's perspective, the environment keeps changing because other robots are learning and changing their behaviors. What worked yesterday might not work today because your teammates are doing something different. MAPPO's centralized training stabilizes this, but it's still a fundamental challenge in multi-agent learning.
+
+## The Bigger Picture: Why This Matters
+
+I didn't choose the foraging problem just because it's a classic benchmark. It's because it generalizes to so many real-world problems I care about. Search and rescue is the obvious one. Imagine a disaster area where you need drones to search for survivors. You want coordinated coverage, efficient search patterns, and the ability to adapt as the situation changes. That's foraging.
+
+Warehouse automation is another huge application. Multi-robot systems picking and sorting items, dynamically allocating tasks, avoiding each other in tight spaces. Environmental monitoring with distributed sensor networks. Agriculture with swarm-based crop monitoring and automated harvesting. All of these are variations on the same core problem: multiple autonomous agents efficiently searching, collecting, and coordinating in a shared space.
+
+## Where I'm Headed Next
+
+Right now, I'm working on version 11 with scaled-down AprilTags to test the detection limits. I want to know how small I can make targets while still maintaining reliable detection and collection. Beyond that, I'm planning to implement more sophisticated communication protocols. Right now, robots act independently. But what if they could share information about tag locations? Or coordinate to avoid pursuing the same targets?
+
+I'm also interested in heterogeneous swarms. What if you had different types of robots with different capabilities? Maybe some are faster but have shorter sensor range. Others are slower but can carry multiple tags. How would task allocation work in that scenario? Would you see specialized roles emerge?
+
+The ultimate goal is sim-to-real transfer. Everything I'm doing right now is in simulation, which is great for rapid iteration and testing. But the real payoff comes when you can deploy these learned behaviors on physical robots. That means dealing with domain randomization, modeling real sensor noise, and eventually testing on actual E-puck hardware. The E-puck is a commercial robot, so the hardware is available. Getting from Webots to real robots is the next big challenge.
+
+## Learning As I Go
+
+This research is teaching me as much about the process of research as it is about swarm robotics. I've learned that iteration is everything. Version 8 to version 10 wasn't about implementing some grand new idea. It was about testing, observing, tweaking parameters, testing again. That 1.5 times switching threshold? That came from trying 1.2, 1.4, 1.6, 2.0 and watching how robots behaved with each.
+
+I've learned that the simple things matter. The height of the deposit base. The field of view of the camera. The proportional constant in the motor control. These details compound. Get them wrong, and your whole system struggles. Get them right, and suddenly everything clicks.
+
+I've also learned that simulation is both a blessing and a curse. It lets me test ideas fast without breaking expensive hardware. But it also introduces quirks that won't exist in the real world, and it misses complications that will. The gap between simulation and reality is always there, lurking.
+
+## Current Status and What's Next
+
+This research is actively ongoing at UTRGV's MARS Lab as part of my Master's in Computer Science. I'm continuously refining the algorithm, expanding the experimental scenarios, and working toward real robot deployment. I'm testing with 50 AprilTags arranged in clusters, seeing how density affects collection efficiency. I'm experimenting with different swarm sizes to understand scalability. And I'm documenting everything because reproducibility matters.
+
+The deepbots framework and the deepworlds repository have been invaluable resources. Seeing how others have implemented PPO for robot navigation, how they've structured their training loops, how they've handled the Webots API, all of that accelerated my work. The find and avoid v2 example with maskable PPO and curriculum learning was particularly influential. That IEEE paper showing how action masking improves navigation by 40 to 50 percent? That's the kind of insight that changes how you think about the problem.
+
+If there's one thing I want people to take away from this, it's that multi-agent learning is hard but incredibly rewarding. Watching robots figure out how to cooperate, seeing emergent behaviors arise from simple rules, that's the magic of this field. And we're still just scratching the surface of what's possible.
+
+## Connect
+
+Interested in multi-agent reinforcement learning or swarm robotics?
+
+- Email: andrisgonzalis@gmail.com
+- GitHub: [@DoggyDog2020](https://github.com/DoggyDog2020)
+
+Let's advance the field of intelligent multi-agent systems together!

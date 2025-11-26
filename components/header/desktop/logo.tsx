@@ -17,18 +17,18 @@ const LogoButton: FC<Props> = ({ className }) => {
       <Avatar>
         <AvatarImage
           src="/images/logo.png"
-          alt="Tim's avatar"
+          alt="Andres's avatar"
           width={176}
           height={176}
           className="size-8 transform rounded-full"
-          title="Tim's avatar"
+          title="Andres's avatar"
         />
         <AvatarFallback className="bg-accent">
           <UserIcon className="text-foreground size-5" aria-hidden="true" />
         </AvatarFallback>
       </Avatar>
       <span className="text-md text-foreground group-hover:text-accent-foreground font-semibold">
-        Tim
+        Andres
       </span>
     </Link>
   );

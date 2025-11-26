@@ -60,8 +60,8 @@ const Profile: FC<ProfileProps> = memo(({ className }) => {
       icon: TailwindcssLogo,
     },
     {
-      name: "Supabase",
-      icon: SupabaseLogo,
+      name: "Firebase",
+      icon: SupabaseLogo, // Using same icon temporarily
     },
   ];
 
@@ -74,15 +74,15 @@ const Profile: FC<ProfileProps> = memo(({ className }) => {
       aria-label="Profile section"
     >
       <Avatar
-        className="ring-border bg-background hover:ring-accent/50 mx-auto size-32 rounded-full object-cover shadow-lg ring-4 transition-all duration-300"
+        className="ring-border bg-background hover:ring-accent/50 mx-auto size-48 rounded-full object-cover shadow-lg ring-4 transition-all duration-300"
         role="img"
-        aria-label="Tim's profile picture"
+        aria-label="Andres's profile picture"
       >
         <AvatarImage
           src="/images/profile.jpg"
-          alt="Tim's profile picture"
-          width={128}
-          height={128}
+          alt="Andres Gonzales"
+          width={192}
+          height={192}
           className="transition-transform duration-300 group-hover:scale-110"
         />
         <AvatarFallback className="bg-accent">
@@ -90,7 +90,7 @@ const Profile: FC<ProfileProps> = memo(({ className }) => {
         </AvatarFallback>
       </Avatar>
 
-      <WordReveal text="Hire Tim" delay={0.15} />
+      <WordReveal text="Andres Gonzales" delay={0.15} />
 
       <MotionEffect
         fade
@@ -104,7 +104,7 @@ const Profile: FC<ProfileProps> = memo(({ className }) => {
       >
         <div className="space-y-2">
           <p className="text-foreground text-xl font-semibold">
-            The Best Frontend Developer
+            AI Systems Architect/Engineer & Researcher
           </p>
         </div>
       </MotionEffect>

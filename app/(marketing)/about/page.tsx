@@ -98,7 +98,7 @@ export default async function AboutPage() {
                     inView
                   >
                     <h2 className="text-accent-foreground w-full text-center text-3xl font-semibold tracking-tight sm:w-auto sm:text-left">
-                      Why Hire Tim?
+                      About Andres
                     </h2>
                   </MotionEffect>
                 </div>
@@ -114,25 +114,36 @@ export default async function AboutPage() {
                 >
                   <article id="about-me" className="mt-4">
                     <p className="text-foreground w-full text-center text-lg sm:w-auto sm:text-left">
-                      Here&apos;s Why He&apos;s the Perfect Addition to Your
-                      Team!
+                      I'm an educator and innovator at heart who builds the technical infrastructure that powers learning. I'm still very much in education, I just moved from the classroom to the technical side.
                     </p>
 
                     <ul
                       role="list"
                       className="text-foreground wrap-everywhere mt-6 max-w-xl space-y-4"
                     >
+                      <li className="flex gap-x-3">
+                        <CheckIcon
+                          aria-hidden="true"
+                          className="text-primary mt-1 size-5 flex-none"
+                        />
+                        <span>
+                          I&apos;m an AI Systems Architect/Engineer at{" "}
+                          <strong className="font-semibold">HCISD</strong>, building
+                          the{" "}
+                          <strong className="font-semibold">HCISD AI application</strong> to serve our district.
+                        </span>
+                      </li>
                       <li className="flex items-center gap-x-3">
                         <CheckIcon
                           aria-hidden="true"
                           className="text-primary mt-1 size-5 flex-none"
                         />
                         <span>
-                          He is based in the 🌉{" "}
+                          I live in{" "}
                           <strong className="font-semibold">
-                            San Francisco Bay Area
+                            Harlingen, Texas
                           </strong>
-                          .
+                          , in the Rio Grande Valley.
                         </span>
                       </li>
                       <li className="flex gap-x-3">
@@ -141,29 +152,15 @@ export default async function AboutPage() {
                           className="text-primary mt-1 size-5 flex-none"
                         />
                         <span>
-                          He has a{" "}
+                          I&apos;m pursuing my{" "}
                           <strong className="font-semibold">
-                            Computer Science degree
+                            Master&apos;s in Computer Science
                           </strong>{" "}
-                          from the University of Applied Sciences Mittweida in
-                          🇩🇪 Germany.
-                        </span>
-                      </li>
-                      <li className="flex gap-x-3">
-                        <CheckIcon
-                          aria-hidden="true"
-                          className="text-primary mt-1 size-5 flex-none"
-                        />
-                        <span>
-                          He loves working with{" "}
-                          <strong className="font-semibold">JavaScript</strong>,{" "}
-                          <strong className="font-semibold">TypeScript</strong>,{" "}
-                          <strong className="font-semibold">Next.js</strong>,{" "}
-                          <strong className="font-semibold">React</strong>,{" "}
+                          at UTRGV, conducting research in{" "}
                           <strong className="font-semibold">
-                            Tailwind CSS
-                          </strong>
-                          , <strong className="font-semibold">Supabase</strong>.
+                            reinforcement learning and swarm robotics
+                          </strong>{" "}
+                          at the MARS Lab.
                         </span>
                       </li>
                       <li className="flex gap-x-3">
@@ -172,34 +169,15 @@ export default async function AboutPage() {
                           className="text-primary mt-1 size-5 flex-none"
                         />
                         <span>
-                          He has built{" "}
-                          <a
-                            href="https://github.com/timtbdev"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-foreground hover:text-accent-foreground font-semibold underline transition-colors"
-                          >
-                            three open-source apps
-                          </a>
-                          , one of which has{" "}
-                          <a
-                            href="https://github.com/timtbdev/Next.js-Blog-App"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-foreground hover:text-accent-foreground font-semibold underline transition-colors"
-                          >
-                            🌟400+ GitHub stars
-                          </a>{" "}
-                          and is used by over{" "}
-                          <a
-                            href="https://github.com/timtbdev/Next.js-Blog-App"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-foreground hover:text-accent-foreground font-semibold underline transition-colors"
-                          >
-                            👨‍💻80 developers
-                          </a>
-                          .
+                          I&apos;m a former{" "}
+                          <strong className="font-semibold">
+                            AP Chemistry Teacher
+                          </strong>{" "}
+                          with a{" "}
+                          <strong className="font-semibold">
+                            Bachelor&apos;s in Biology
+                          </strong>{" "}
+                          from UTRGV.
                         </span>
                       </li>
                       <li className="flex gap-x-3">
@@ -208,31 +186,7 @@ export default async function AboutPage() {
                           className="text-primary mt-1 size-5 flex-none"
                         />
                         <span>
-                          He speaks{" "}
-                          <strong className="font-semibold">🇺🇸English</strong>
-                          {", "}
-                          <strong className="font-semibold">🇩🇪German</strong>
-                          {", "} and{" "}
-                          <strong className="font-semibold">🇲🇳Mongolian</strong>
-                          .
-                        </span>
-                      </li>
-                      <li className="flex gap-x-3">
-                        <CheckIcon
-                          aria-hidden="true"
-                          className="text-primary mt-1 size-5 flex-none"
-                        />
-                        <span>
-                          He learns ⚡fast, and has a good eye for 🎨design.
-                        </span>
-                      </li>
-                      <li className="flex gap-x-3">
-                        <CheckIcon
-                          aria-hidden="true"
-                          className="text-primary mt-1 size-5 flex-none"
-                        />
-                        <span>
-                          When he is not 🧑‍💻coding, he is out for a 🏃‍♂️run.
+                          I love education, and I really, really love technology - now I get to do both.
                         </span>
                       </li>
                     </ul>

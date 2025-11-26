@@ -41,26 +41,26 @@ const InfoBarDetailDesktop: FC<Props> = ({
           loading="lazy"
         />
 
-        <span className="text-md text-foreground flex font-medium">
+        <span className="text-md text-foreground dark:text-white flex font-medium">
           {authorName}
         </span>
       </div>
       <Separator orientation="vertical" className="bg-border h-4 w-[1px]" />
       <div className="inline-flex items-center gap-2">
-        <FolderIcon size={20} className="size-5" aria-hidden="true" />
-        <span className="text-md">{category}</span>
+        <FolderIcon size={20} className="size-5 dark:text-white" aria-hidden="true" />
+        <span className="text-md dark:text-white">{category}</span>
       </div>
       <Separator orientation="vertical" className="bg-border h-4 w-[1px]" />
       <div className="inline-flex items-center gap-2">
-        <CalendarIcon size={20} className="size-5" aria-hidden="true" />
-        <span className="text-md">
+        <CalendarIcon size={20} className="size-5 dark:text-white" aria-hidden="true" />
+        <span className="text-md dark:text-white">
           {format(parseISO(date), "MMM dd, yyyy")}
         </span>
       </div>
       <Separator orientation="vertical" className="bg-border h-4 w-[1px]" />
       <div className="inline-flex items-center gap-2">
-        <ClockIcon size={20} className="size-5" aria-hidden="true" />
-        <span className="text-md">{getMinutes(readTime)}</span>
+        <ClockIcon size={20} className="size-5 dark:text-white" aria-hidden="true" />
+        <span className="text-md dark:text-white">{getMinutes(readTime)}</span>
       </div>
     </div>
   );

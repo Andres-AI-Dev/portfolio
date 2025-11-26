@@ -1,23 +1,32 @@
-# Modern Portfolio Website
+# Andres Gonzales - Portfolio
 
-![Portfolio-App-Product-Hunt](https://github.com/user-attachments/assets/e344041d-564d-4439-af63-c926a97b14d8)
-![Banner-02](https://github.com/user-attachments/assets/ebb36170-fdf3-4b47-bbc2-cdaa8f282b5a)
-![Banner-03](https://github.com/user-attachments/assets/a1c6a2e5-2c6c-4b86-8ef7-8f8e3d84b2df)
-![Banner-04](https://github.com/user-attachments/assets/3b5f415a-3351-49cb-97e7-094b19b774d5)
+AI Systems Architect & Researcher building the future of educational technology.
 
-A modern, blazing-fast portfolio website built with cutting-edge web technologies. Features include SEO optimization, full responsiveness, and a powerful MDX blog system.
+## About Me
+
+I'm an AI Systems Architect/Engineer at HCISD and a Graduate Research Assistant at UTRGV's MARS Lab. Currently pursuing my Master's in Computer Science with a focus on reinforcement learning and swarm robotics.
+
+**Background:**
+- Former AP Chemistry Teacher transitioning to AI Engineering
+- Bachelor's in Biology from UTRGV
+- Based in Harlingen, Texas (Rio Grande Valley)
+
+**Current Work:**
+- Building the HCISD AI application (React + Vite + Firebase + Vertex AI)
+- Developing HCISD-AI Agent Chrome extension using Google's Computer Use 2.5
+- Conducting research in federated learning for swarm robotics at MARS Lab
+
+**Recent Highlights:**
+- Attended Google for Education Leader Series in Chicago (October 14-16, 2025)
+- AI consultant for HCISD district-wide AI implementation
 
 ## ✨ Features
 
 - ⚡️ **Performance**: Built with Next.js 15 for optimal speed and SEO
 - 🎨 **Design**: Modern UI with Tailwind CSS v4 and ShadCN UI components
-- 📝 **Blog**: MDX-powered blog system using Fumadocs & Content Collection
+- 📝 **Blog**: MDX-powered blog system for sharing insights on AI, ML, and EdTech
 - 🔄 **State Management**: Efficient state handling with Zustand and TanStack Query v5
 - 📧 **Contact**: Integrated email functionality via Resend
-
-## 🚀 Live Demo
-
-Visit [hire-tim.com](https://hire-tim.com) to see the portfolio in action!
 
 ## 🛠️ Tech Stack
 
@@ -77,25 +86,25 @@ The project uses several configuration files:
 Create a `.env.local` file in the root directory with the following variables:
 
 ```env
-NEXT_PUBLIC_APP_URL=http://localhost:3000
-NEXT_PUBLIC_WEB_URL=your_production_domain_name
-GITHUB_TOKEN=your_github_token
-NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_key
+# Contact Form (Get your API key from https://resend.com)
 RESEND_API_KEY=your_resend_api_key
+CONTACT_EMAIL=andrisgonzalis@gmail.com
+
+# GitHub Token (Optional - for API rate limits)
+GITHUB_TOKEN=your_github_token
 ```
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License.
 
 ## 📞 Contact
 
-For questions, feedback, or collaboration:
+Connect with me for AI consulting, collaboration, or questions about educational technology:
 
-- 📧 Email: timtb.dev@gmail.com
-- 🐦 X (Twitter): [@timtbdev](https://x.com/timtbdev)
+- 📧 Email: andrisgonzalis@gmail.com
+- 💻 GitHub: [@DoggyDog2020](https://github.com/DoggyDog2020)
 
 ---
 
-Made with ❤️ by [Tim](https://hire-tim.com)
+Built by Andres Gonzales

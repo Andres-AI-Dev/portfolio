@@ -30,8 +30,8 @@ export async function POST(request: Request) {
     console.log("📧 Sending contact form submission:", { name, email });
 
     const { data, error } = await resend.emails.send({
-      from: "Portfolio Contact <contact@timtb.dev>",
-      to: process.env.CONTACT_EMAIL || "timtb.dev@gmail.com",
+      from: "Portfolio Contact <noreply@resend.dev>",
+      to: process.env.CONTACT_EMAIL || "andres.gonzales@hcisd.org",
       subject: `New Contact Form Submission from ${name}`,
       html: `
         <h2>New Contact Form Submission</h2>

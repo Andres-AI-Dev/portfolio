@@ -4,53 +4,53 @@ import type { HeadType } from "@/types";
 const HEAD: HeadType[] = [
   {
     page: "Home",
-    title: truncateTitle("Looking for the Best Frontend Developer? | Hire Tim"),
+    title: truncateTitle("Andres Gonzales | AI Systems Architect & Researcher"),
     description: truncateDescription(
-      "Hire Tim – A Skilled Frontend Developer for Fast, Reliable, and High-Performing Web Applications!",
+      "AI Systems Architect/Engineer building intelligent systems for education at HCISD. Graduate Research Assistant at UTRGV's MARS Lab, focusing on reinforcement learning for swarm robotics.",
     ),
     slug: "/",
   },
   {
     page: "About",
-    title: truncateTitle("About | Frontend Developer for Hire | Tim"),
+    title: truncateTitle("About | Andres Gonzales"),
     description: truncateDescription(
-      "Looking for a top Frontend Developer in San Francisco? Hire Tim.",
+      "Educator and innovator at heart building the technical infrastructure that powers education.",
     ),
     slug: "/about",
   },
   {
     page: "Story",
-    title: truncateTitle("Story | Frontend Developer for Hire | Tim"),
+    title: truncateTitle("Story | Andres Gonzales"),
     description: truncateDescription(
-      "Learn more about Tim's journey and experiences as a frontend developer.",
+      "Learn about Andres's journey from teaching chemistry to building AI systems for education and robotics research.",
     ),
     slug: "/story",
   },
   {
     page: "Blog",
-    title: truncateTitle("Blog | Next.js, Tailwind CSS, and Supabase | Tim"),
-    description: truncateDescription("Explore Tim's latest blog posts"),
+    title: truncateTitle("Blog | AI, ML, and EdTech | Andres Gonzales"),
+    description: truncateDescription("Thoughts and insights on AI, machine learning, and educational technology"),
     slug: "/blog",
   },
   {
     page: "Projects",
-    title: truncateTitle("Projects | Showcasing Tim's Work | Tim"),
-    description: truncateDescription("Next.js, Tailwind CSS, and Supabase!"),
+    title: truncateTitle("Projects | Andres Gonzales"),
+    description: truncateDescription("Showcasing AI applications, research projects, and educational technology solutions"),
     slug: "/projects",
   },
   {
-    page: "Shoutouts",
-    title: truncateTitle("Shoutouts | Feature your post here"),
+    page: "Research",
+    title: truncateTitle("Research | Andres Gonzales"),
     description: truncateDescription(
-      "Give me a shoutout, and I'll feature your post here!",
+      "Research in reinforcement learning, swarm robotics, and AI for education at UTRGV's MARS Lab",
     ),
-    slug: "/shoutouts",
+    slug: "/research",
   },
   {
     page: "Contact",
-    title: truncateTitle("Contact | Get in Touch with Tim"),
+    title: truncateTitle("Contact | Get in Touch"),
     description: truncateDescription(
-      "Thinking about hiring Tim? Drop him a message.",
+      "Connect with Andres for AI consulting, collaboration, or questions about educational technology.",
     ),
     slug: "/contact",
   },

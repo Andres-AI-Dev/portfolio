@@ -44,7 +44,7 @@ const DetailBlogPost: FC<Props> = ({ post }) => {
               src={image}
             />
             <ActiveSectionObserver headings={headings}>
-              <div className="prose max-w-2xl overflow-hidden px-6 pt-4 pb-8 sm:px-8 sm:pt-6 sm:pb-12">
+              <div className="prose dark:prose-invert max-w-2xl overflow-hidden px-6 pt-4 pb-8 sm:px-8 sm:pt-6 sm:pb-12">
                 <MDXContent
                   components={{
                     Image: ({ src, alt, width, height }) => (
@@ -67,14 +67,14 @@ const DetailBlogPost: FC<Props> = ({ post }) => {
                       </div>
                     ),
                     p: ({ children }) => (
-                      <p className="text-muted-foreground text-base/7">
+                      <p className="text-muted-foreground dark:text-white text-base/7">
                         {children}
                       </p>
                     ),
                     strong: ({ children, ...props }) => {
                       return (
                         <b
-                          className="text-muted-light font-semibold"
+                          className="text-muted-light dark:text-white font-semibold"
                           {...props}
                         >
                           {children}
@@ -96,7 +96,7 @@ const DetailBlogPost: FC<Props> = ({ post }) => {
                     a: ({ children, ...props }) => {
                       return (
                         <Link
-                          className="text-muted-light inline font-medium underline underline-offset-4"
+                          className="text-muted-light dark:text-blue-400 inline font-medium underline underline-offset-4"
                           href={props.href ?? "#"}
                           target="_blank"
                           rel="noopener noreferrer"
@@ -107,17 +107,17 @@ const DetailBlogPost: FC<Props> = ({ post }) => {
                       );
                     },
                     ul: ({ children }) => (
-                      <ul className="text-muted-foreground list-inside list-disc space-y-2">
+                      <ul className="text-muted-foreground dark:text-white list-inside list-disc space-y-2">
                         {children}
                       </ul>
                     ),
                     ol: ({ children }) => (
-                      <ol className="text-muted-foreground ml-5 list-decimal space-y-8">
+                      <ol className="text-muted-foreground dark:text-white ml-5 list-decimal space-y-8">
                         {children}
                       </ol>
                     ),
                     li: ({ children }) => (
-                      <li className="space-y-6 pl-1 text-base/7">{children}</li>
+                      <li className="dark:text-white space-y-6 pl-1 text-base/7">{children}</li>
                     ),
                     h1: ({ children }) => {
                       const element = sections.find(
@@ -133,7 +133,7 @@ const DetailBlogPost: FC<Props> = ({ post }) => {
                       return (
                         <h1
                           id={slug}
-                          className="text-muted-light relative scroll-mt-44 text-4xl font-medium tracking-tight lg:scroll-mt-32"
+                          className="text-muted-light dark:text-white relative scroll-mt-44 text-4xl font-medium tracking-tight lg:scroll-mt-32"
                         >
                           {children}
                         </h1>
@@ -153,7 +153,7 @@ const DetailBlogPost: FC<Props> = ({ post }) => {
                       return (
                         <h2
                           id={slug}
-                          className="text-muted-light relative scroll-mt-44 text-3xl font-medium tracking-tight lg:scroll-mt-32"
+                          className="text-muted-light dark:text-white relative scroll-mt-44 text-3xl font-medium tracking-tight lg:scroll-mt-32"
                         >
                           {children}
                         </h2>
@@ -173,7 +173,7 @@ const DetailBlogPost: FC<Props> = ({ post }) => {
                       return (
                         <h3
                           id={slug}
-                          className="text-muted-light relative scroll-mt-44 text-xl font-medium tracking-tight lg:scroll-mt-32"
+                          className="text-muted-light dark:text-white relative scroll-mt-44 text-xl font-medium tracking-tight lg:scroll-mt-32"
                         >
                           {children}
                         </h3>
@@ -188,7 +188,7 @@ const DetailBlogPost: FC<Props> = ({ post }) => {
           </div>
           <div className="border-border bg-background border-t to-transparent p-10 backdrop-blur-lg">
             <div className="flex flex-col gap-y-4">
-              <p className="font-display py-2 text-xl font-medium">Read more</p>
+              <p className="font-display dark:text-white py-2 text-xl font-medium">Read more</p>
               <ul className="flex flex-col gap-y-6">
                 {relatedPosts.map((relatedPost) => (
                   <li key={relatedPost._meta.path}>
@@ -207,13 +207,13 @@ const DetailBlogPost: FC<Props> = ({ post }) => {
                         src={relatedPost.image}
                       />
                       <div className="flex flex-col space-y-2">
-                        <p className="font-display text-foreground line-clamp-1 font-medium underline-offset-4 group-hover:underline">
+                        <p className="font-display text-foreground dark:text-white line-clamp-1 font-medium underline-offset-4 group-hover:underline">
                           {relatedPost.title}
                         </p>
-                        <p className="text-muted-foreground line-clamp-2 text-sm underline-offset-2 group-hover:underline">
+                        <p className="text-muted-foreground dark:text-white line-clamp-2 text-sm underline-offset-2 group-hover:underline">
                           {relatedPost.description}
                         </p>
-                        <p className="text-muted-foreground text-xs underline-offset-2 group-hover:underline">
+                        <p className="text-muted-foreground dark:text-white text-xs underline-offset-2 group-hover:underline">
                           {relatedPost.date}
                         </p>
                       </div>
@@ -227,7 +227,7 @@ const DetailBlogPost: FC<Props> = ({ post }) => {
         {/* Sidebar */}
         <div className="sticky mt-48 hidden flex-col sm:flex">
           <div className="flex flex-col gap-y-4 py-5">
-            <p className="text-muted-foreground text-sm">Written by</p>
+            <p className="text-muted-foreground dark:text-white text-sm">Written by</p>
             <Image
               alt={author}
               loading="lazy"
@@ -239,10 +239,10 @@ const DetailBlogPost: FC<Props> = ({ post }) => {
               src={authorAvatar}
             />
             <div className="flex flex-col">
-              <p className="text-foreground text-sm font-medium whitespace-nowrap">
+              <p className="text-foreground dark:text-white text-sm font-medium whitespace-nowrap">
                 {author}
               </p>
-              <p className="text-muted-foreground text-sm">
+              <p className="text-muted-foreground dark:text-white text-sm">
                 Frontend Developer
               </p>
             </div>

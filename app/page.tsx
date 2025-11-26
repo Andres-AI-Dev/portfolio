@@ -24,7 +24,7 @@ export default async function HomePage() {
         <div className="relative mx-auto -mt-10 max-w-5xl items-center px-4 sm:px-6 lg:px-8">
           <Intro className="mb-6" />
           {projects.map((project, index) => (
-            <div key={index} className="mb-8">
+            <div key={index} className="mb-6">
               <ProjectItem project={project} />
             </div>
           ))}

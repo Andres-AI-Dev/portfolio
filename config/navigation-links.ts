@@ -8,7 +8,7 @@ import {
   MailIcon,
   ArchiveIcon as ProjectsIcon,
   FileTextIcon as ResumeIcon,
-  SpeechIcon as ShoutoutIcon,
+  FlaskConicalIcon as ResearchIcon,
 } from "lucide-react";
 
 const navigationLinks: NavigationLink[] = [
@@ -29,7 +29,7 @@ const navigationLinks: NavigationLink[] = [
         icon: AboutMeIcon,
       },
       {
-        href: "/files/resume.pdf",
+        href: "/files/Andres's Resume.pdf",
         label: "Resume",
         description: truncateDescription("View my resume", 30),
         icon: ResumeIcon,
@@ -48,14 +48,14 @@ const navigationLinks: NavigationLink[] = [
     label: "Projects",
   },
   {
+    icon: ResearchIcon,
+    href: "/research",
+    label: "Research",
+  },
+  {
     icon: BlogIcon,
     href: "/blog",
     label: "Blog",
-  },
-  {
-    icon: ShoutoutIcon,
-    href: "/shoutouts",
-    label: "Shoutouts",
   },
   {
     icon: MailIcon,

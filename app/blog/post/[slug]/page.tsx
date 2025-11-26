@@ -51,7 +51,7 @@ export async function generateMetadata({
       description: post.data.description.slice(0, 100) + ("..." as string),
       images: [
         {
-          url: post.data.image,
+          url: Array.isArray(post.data.image) ? post.data.image[0] : post.data.image,
           width: 1200,
           height: 630,
           alt: post.data.title,
@@ -65,7 +65,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: post.data.title,
       description: post.data.description.slice(0, 100) + ("..." as string),
-      images: post.data.image ? [post.data.image] : undefined,
+      images: Array.isArray(post.data.image) ? [post.data.image[0]] : [post.data.image],
     },
   };
 }
@@ -105,7 +105,7 @@ export default async function BlogPost({ params }: Props) {
         </MotionEffect>
       </Heading>
       <div className="border-border bg-background relative border-t">
-        <div className="mx-auto w-full max-w-5xl">
+        <div className="w-full px-4">
           <MotionEffect
             fade
             blur="10px"

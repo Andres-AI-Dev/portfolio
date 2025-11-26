@@ -16,7 +16,7 @@ const docs = defineCollection({
   schema: (z) => ({
     title: z.string(),
     description: z.string(),
-    image: z.string(),
+    image: z.union([z.string(), z.array(z.string())]),
     author: z.string(),
     authorAvatar: z.string(),
     date: z.string(),
@@ -42,7 +42,7 @@ const posts = defineCollection({
   schema: (z) => ({
     title: z.string(),
     description: z.string(),
-    image: z.string(),
+    image: z.union([z.string(), z.array(z.string())]),
     author: z.string(),
     authorAvatar: z.string(),
     date: z.string(),
@@ -119,6 +119,31 @@ const projects = defineCollection({
   },
 });
 
+const research = defineCollection({
+  name: "research",
+  directory: "content/research",
+  include: ["**/*.md", "**/*.mdx"],
+  schema: (z) => ({
+    order: z.number(),
+    title: z.string(),
+    category: z.string(),
+    created_at: z.string(),
+    image: z.string(),
+    featured: z.boolean(),
+    webUrl: z.string().nullable(),
+    githubUrl: z.string().nullable(),
+  }),
+  transform: async (document, context) => {
+    const mdx = await compileMDX(context, document, {
+      rehypePlugins: [rehypeParseCodeBlocks],
+    });
+    return {
+      ...document,
+      mdx,
+    };
+  },
+});
+
 export default defineConfig({
-  collections: [posts, projects, docs, metas],
+  collections: [posts, projects, docs, metas, research],
 });

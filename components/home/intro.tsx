@@ -51,10 +51,10 @@ const Intro = ({ className }: Props) => {
                   <PhotoView src="/images/about/about_me_01.jpg">
                     <Image
                       src="/images/about/about_me_01.jpg"
-                      alt="Wedding photo"
-                      className="z-2 aspect-2/3 w-[500px] translate-x-12 -rotate-3 cursor-pointer rounded-lg object-cover shadow-sm transition-all duration-300 hover:scale-105 hover:shadow-md sm:w-[200px]"
-                      width={200}
-                      height={300}
+                      alt="MARS Lab team photo"
+                      className="z-2 h-[400px] w-auto translate-x-8 -rotate-3 cursor-pointer rounded-lg object-cover shadow-sm transition-all duration-300 hover:scale-105 hover:shadow-md sm:h-[360px]"
+                      width={480}
+                      height={360}
                       priority={true}
                     />
                   </PhotoView>
@@ -71,10 +71,10 @@ const Intro = ({ className }: Props) => {
                   <PhotoView src="/images/about/about_me_02.jpg">
                     <Image
                       src="/images/about/about_me_02.jpg"
-                      alt="Family photo"
-                      className="z-1 aspect-2/3 w-[500px] rotate-2 cursor-pointer rounded-lg object-cover shadow-sm transition-all duration-300 hover:scale-105 hover:shadow-md sm:w-[200px]"
-                      width={200}
-                      height={300}
+                      alt="Google Chicago conference"
+                      className="z-1 h-[400px] w-auto rotate-2 cursor-pointer rounded-lg object-cover shadow-sm transition-all duration-300 hover:scale-105 hover:shadow-md sm:h-[360px]"
+                      width={266}
+                      height={400}
                       priority={true}
                     />
                   </PhotoView>
@@ -91,10 +91,10 @@ const Intro = ({ className }: Props) => {
                   <PhotoView src="/images/about/about_me_03.jpg">
                     <Image
                       src="/images/about/about_me_03.jpg"
-                      alt="Running photo"
-                      className="z-0 aspect-2/3 w-[500px] -translate-x-12 rotate-2 cursor-pointer rounded-lg object-cover shadow-sm transition-all duration-300 hover:scale-105 hover:shadow-md sm:w-[200px]"
-                      width={200}
-                      height={300}
+                      alt="Google for Education event in Chicago"
+                      className="z-0 h-[400px] w-auto -translate-x-8 rotate-2 cursor-pointer rounded-lg object-cover shadow-sm transition-all duration-300 hover:scale-105 hover:shadow-md sm:h-[360px]"
+                      width={480}
+                      height={360}
                       priority={true}
                     />
                   </PhotoView>
@@ -111,84 +111,70 @@ const Intro = ({ className }: Props) => {
               <p className="text-foreground text-md text-center sm:text-left sm:text-lg">
                 I&apos;m{" "}
                 <span className="text-accent-foreground font-medium">
-                  Tumur Bazarragchaa
-                </span>{" "}
-                (preferred name:{" "}
-                <span className="text-accent-foreground font-medium">Tim</span>
-                ). I&apos;m a{" "}
+                  Andres Gonzales
+                </span>
+                , an{" "}
                 <span className="text-accent-foreground font-medium">
-                  frontend developer
+                  AI Systems Architect/Engineer
                 </span>{" "}
-                with{" "}
+                at{" "}
                 <span className="text-accent-foreground font-medium">
-                  4 years
+                  HCISD
                 </span>{" "}
-                of experience in{" "}
+                and{" "}
                 <span className="text-accent-foreground font-medium">
-                  React, Next.js, TailwindCSS, JavaScript, and TypeScript
+                  Graduate Research Assistant
+                </span>{" "}
+                at UTRGV&apos;s{" "}
+                <span className="text-accent-foreground font-medium">
+                  MARS Lab
                 </span>
                 . I live in{" "}
                 <span className="text-accent-foreground font-medium">
-                  Walnut Creek, CA
-                </span>{" "}
-                with my wife and daughter.
+                  Harlingen, Texas
+                </span>
+                , in the Rio Grande Valley.
               </p>
               <p className="text-foreground text-md text-center sm:text-left sm:text-lg">
-                Originally from{" "}
+                I&apos;m pursuing my{" "}
                 <span className="text-accent-foreground font-medium">
-                  Mongolia
+                  Master&apos;s in Computer Science
+                </span>{" "}
+                at UTRGV, focusing on{" "}
+                <span className="text-accent-foreground font-medium">
+                  reinforcement learning
+                </span>{" "}
+                and{" "}
+                <span className="text-accent-foreground font-medium">
+                  swarm robotics
                 </span>
-                , I studied Computer Science at the{" "}
-                <Link
-                  href="https://www.hs-mittweida.de/en/"
-                  className="text-accent-foreground hover:text-accent-foreground/80 font-medium underline underline-offset-4"
-                  target="_blank"
-                >
-                  University of Mittweida
-                </Link>{" "}
-                in Germany and speak{" "}
+                . I have a Bachelor&apos;s in Biology from UTRGV and was formerly an{" "}
                 <span className="text-accent-foreground font-medium">
-                  English
-                </span>
-                ,{" "}
-                <span className="text-accent-foreground font-medium">
-                  German
-                </span>
-                , and{" "}
-                <span className="text-accent-foreground font-medium">
-                  Mongolian
+                  AP Chemistry Teacher
                 </span>
                 .
               </p>
               <p className="text-foreground text-md text-center sm:text-left sm:text-lg">
-                I constantly improve my skills by grinding{" "}
+                As an{" "}
                 <span className="text-accent-foreground font-medium">
-                  LeetCode
+                  educator at heart
                 </span>{" "}
-                and learning the latest frontend technologies.
+                with a deep passion for{" "}
+                <span className="text-accent-foreground font-medium">
+                  technology
+                </span>
+                , I&apos;m dedicated to creating innovative solutions for educators around the world.
               </p>
               <p className="text-foreground text-md text-center sm:text-left sm:text-lg">
-                Currently, I&apos;m building a{" "}
-                <Link
-                  href="https://playlist.fan"
-                  className="text-accent-foreground hover:text-accent-foreground/80 font-medium underline underline-offset-4"
-                  target="_blank"
-                >
-                  a platform
-                </Link>{" "}
-                to help{" "}
-                <span className="text-md">
-                  runners easily find and share battle-tested running tracks. I
-                  enjoy running outdoors with good music. Here&apos;s my{" "}
-                  <Link
-                    href="https://open.spotify.com/playlist/28OAQven2H4fLmFsNEeVcY?si=Q7wYapo7RAmX4E-A72OdW"
-                    className="text-accent-foreground hover:text-accent-foreground/80 font-medium underline underline-offset-4"
-                    target="_blank"
-                  >
-                    playlist
-                  </Link>
-                  .
+                I actively participate in{" "}
+                <span className="text-accent-foreground font-medium">
+                  educational workshops and conferences
                 </span>{" "}
+                to collaborate with leaders in the field. For example, in October 2025, I attended the{" "}
+                <span className="text-accent-foreground font-medium">
+                  Google for Education Leader Series
+                </span>{" "}
+                in Chicago, connecting with educational leaders nationwide on AI implementation in K-12 education.
               </p>
               <p className="text-foreground text-md mb-10 text-center sm:text-left sm:text-lg">
                 Please find below my selected{" "}
@@ -196,17 +182,16 @@ const Intro = ({ className }: Props) => {
                   href="/projects"
                   className="text-accent-foreground hover:text-accent-foreground/80 font-medium underline underline-offset-4"
                 >
-                  works
+                  projects
                 </Link>
-                , and you can view my{" "}
+                . Feel free to{" "}
                 <Link
-                  href="/files/resume.pdf"
+                  href="/contact"
                   className="text-accent-foreground hover:text-accent-foreground/80 font-medium underline underline-offset-4"
-                  target="_blank"
                 >
-                  resume here
-                </Link>
-                .
+                  reach out
+                </Link>{" "}
+                for AI consulting or collaboration opportunities.
               </p>
             </div>
           </div>

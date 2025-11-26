@@ -10,35 +10,26 @@ import { SocialType } from "../types";
 
 const socialConfig: SocialType[] = [
   {
-    href: "https://www.strava.com/athletes/128944314",
-    icon: StravaIcon,
-    label: "Strava",
-  },
-  {
-    href: "mailto:timtb.dev@gmail.com",
+    href: "/contact",
     icon: EmailIcon,
     label: "Email",
   },
   {
-    href: "https://x.com/hire_tim_com",
-    icon: XPlatformIcon,
-    label: "X (Twitter)",
-  },
-  {
-    href: "https://github.com/timtbdev",
+    href: "https://github.com/DoggyDog2020",
     icon: GitHubIcon,
     label: "GitHub",
   },
-  {
-    href: "https://www.linkedin.com/in/timtbdev/",
-    icon: LinkedInIcon,
-    label: "LinkedIn",
-  },
-  {
-    href: "https://www.facebook.com/timtbaz/",
-    icon: FacebookIcon,
-    label: "Facebook",
-  },
+  // Uncomment and update these when you create your profiles:
+  // {
+  //   href: "https://linkedin.com/in/your-profile",
+  //   icon: LinkedInIcon,
+  //   label: "LinkedIn",
+  // },
+  // {
+  //   href: "https://x.com/your-handle",
+  //   icon: XPlatformIcon,
+  //   label: "X (Twitter)",
+  // },
 ];
 
 export default socialConfig;
