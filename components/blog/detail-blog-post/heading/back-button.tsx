@@ -9,7 +9,7 @@ const BackButton = () => {
   return (
     <Button
       variant="outline"
-      className="gap-2 px-4 py-1.5"
+      className="gap-2 px-4 py-1.5 cursor-pointer"
       onClick={() => router.push("/blog")}
     >
       <ArrowLeftIcon className="size-4" />

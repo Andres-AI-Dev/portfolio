@@ -195,7 +195,7 @@ const SearchButton = ({ onOpenChange }: { onOpenChange?: () => void }) => {
       <Button
         variant="outline"
         size="icon"
-        className="group hidden rounded-full md:flex"
+        className="group hidden rounded-full md:flex cursor-pointer"
         onClick={() => setIsOpen(true)}
         aria-label="Open search"
       >
@@ -338,9 +338,7 @@ const SearchButton = ({ onOpenChange }: { onOpenChange?: () => void }) => {
                   <CommandItem
                     key={category.slug}
                     value={category.name}
-                    onSelect={() =>
-                      router.push(`/blog/category/${category.slug}`)
-                    }
+                    onSelect={() => router.push(category.slug)}
                     className="flex items-center gap-2"
                   >
                     {category.icon && (

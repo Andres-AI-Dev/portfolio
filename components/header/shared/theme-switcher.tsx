@@ -80,7 +80,7 @@ export function ThemeSwitcher({
         <Button
           variant="outline"
           size="icon"
-          className={cn("group rounded-full", className)}
+          className={cn("group rounded-full cursor-pointer", className)}
           aria-label="Open theme menu"
         >
           <Sun className="text-foreground group-hover:text-accent-foreground size-5 scale-100 rotate-0 transition-all duration-300 dark:scale-0 dark:-rotate-90" />
