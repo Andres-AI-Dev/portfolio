@@ -293,7 +293,8 @@
   .dark .prose blockquote,
   .dark .prose ul,
   .dark .prose ol,
-  .dark .prose a {
+  .dark .prose a,
+  .dark .prose code {
     color: hsl(0, 0%, 98%) !important;
   }
 
