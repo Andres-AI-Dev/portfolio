@@ -54,7 +54,6 @@ export function ContactForm() {
   // Handle form submission
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
-      console.log("Starting form submission with values:", values);
       setIsSubmitting(true);
 
       // Send form data to API endpoint
@@ -67,11 +66,8 @@ export function ContactForm() {
       });
 
       const data = await response.json();
-      console.log("API Response:", data);
 
       if (!response.ok) {
-        console.error("API Error:", data.error);
-
         // Handle specific Resend API domain verification error
         if (
           data.name === "validation_error" &&
@@ -89,7 +85,6 @@ export function ContactForm() {
       // Show success message and reset form
       toast.success("Message sent successfully!");
       form.reset();
-      console.log("Form submitted successfully");
     } catch (error) {
       console.error("Form submission error:", error);
       // Provide a more user-friendly error message
