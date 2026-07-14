@@ -18,12 +18,6 @@ const FAVICONS = {
       type: "image/png",
     },
   ],
-  other: [
-    {
-      rel: "apple-touch-icon-precomposed",
-      url: `${BASE_URL}/apple-icon-precomposed.png`,
-    },
-  ],
 };
 
 export default FAVICONS;

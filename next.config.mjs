@@ -40,6 +40,15 @@ const nextConfig = {
         ],
       },
       {
+        source: "/favicons/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+      {
         // Files like resume.pdf may be replaced in place at the same URL, so
         // keep the cache short and force revalidation instead of immutable.
         source: "/files/:path*",
