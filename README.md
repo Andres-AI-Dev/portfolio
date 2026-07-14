@@ -1,110 +1,65 @@
-# Andres Gonzales - Portfolio
+# Andres Gonzales — Portfolio
 
-AI Systems Architect & Researcher building the future of educational technology.
+Personal portfolio and blog for Andres Gonzales, live at [www.andreslearns.org](https://www.andreslearns.org).
 
-## About Me
-
-I'm an AI Systems Architect/Engineer at HCISD and a Graduate Research Assistant at UTRGV's MARS Lab. Currently pursuing my Master's in Computer Science with a focus on reinforcement learning and swarm robotics.
-
-**Background:**
-- Former AP Chemistry Teacher transitioning to AI Engineering
-- Bachelor's in Biology from UTRGV
-- Based in Harlingen, Texas (Rio Grande Valley)
-
-**Current Work:**
-- Building the HCISD AI application (React + Vite + Firebase + Vertex AI)
-- Developing HCISD-AI Agent Chrome extension using Google's Computer Use 2.5
-- Conducting research in federated learning for swarm robotics at MARS Lab
-
-**Recent Highlights:**
-- Attended Google for Education Leader Series in Chicago (October 14-16, 2025)
-- AI consultant for HCISD district-wide AI implementation
-
-## Features
-
-- **Performance**: Built with Next.js 15 for optimal speed and SEO
-- **Design**: Modern UI with Tailwind CSS v4 and ShadCN UI components
-- **Blog**: MDX-powered blog system for sharing insights on AI, ML, and EdTech
-- **State Management**: Efficient state handling with Zustand and TanStack Query v5
-- **Contact**: Integrated email functionality via Resend
+AI Systems Architect & Researcher writing about AI, machine learning, and educational technology.
 
 ## Tech Stack
 
-- **Framework**: Next.js 15
+- **Framework**: Next.js 16 (App Router) with React 19
 - **Language**: TypeScript 5
-- **Styling**: Tailwind CSS v4, ShadCN UI
-- **State Management**: Zustand, TanStack Query v5
-- **Content**: MDX, Fumadocs, Content Collection
-- **Email**: Resend
+- **Styling**: Tailwind CSS v4, Radix UI primitives, framer-motion
+- **Content**: MDX authored in `content/`, compiled with Content Collections and rendered via Fumadocs
+- **State/Data**: Zustand, TanStack Query v5
+- **Email**: Resend (contact form)
+- **Analytics**: Vercel Analytics (enabled on Vercel deployments)
+
+## Content
+
+Posts, projects, and research entries are MDX files under `content/` (`content/posts`, `content/projects`, `content/research`). They are processed at build time by `content-collections.ts`.
 
 ## Prerequisites
 
-- Node.js 18.0 or later
-- npm, yarn, or pnpm package manager
+- Node.js 18.18 or later
+- npm
 
 ## Getting Started
 
-1. **Clone the repository**
-
-   ```bash
-   git clone https://github.com/yourusername/portfolio-template.git
-   cd portfolio-template
-   ```
-
-2. **Install dependencies**
+1. **Install dependencies**
 
    ```bash
    npm install
-   # or
-   yarn install
-   # or
-   pnpm install
    ```
+
+2. **Configure environment variables**
+
+   Copy the example file and fill in your own values:
+
+   ```bash
+   cp .env.local.example .env.local
+   ```
+
+   See [`.env.local.example`](.env.local.example) for the full list. `RESEND_API_KEY` and `CONTACT_EMAIL` are required for the contact form; the rest are optional.
 
 3. **Start the development server**
+
    ```bash
    npm run dev
-   # or
-   yarn dev
-   # or
-   pnpm dev
    ```
 
-Visit `http://localhost:3000` to see your portfolio in action!
+   Visit [http://localhost:3000](http://localhost:3000).
 
-## Configuration
+## Scripts
 
-The project uses several configuration files:
+- `npm run dev` — start the development server
+- `npm run build` — production build
+- `npm run start` — serve the production build
+- `npm run lint` — run ESLint
 
-- `next.config.mjs` - Next.js configuration
-- `tailwind.config.ts` - Tailwind CSS configuration
-- `tsconfig.json` - TypeScript configuration
-- `contentlayer.config.ts` - Content management configuration
+## Deployment
 
-## Environment Variables
-
-Create a `.env.local` file in the root directory with the following variables:
-
-```env
-# Contact Form (Get your API key from https://resend.com)
-RESEND_API_KEY=your_resend_api_key
-CONTACT_EMAIL=andrisgonzalis@gmail.com
-
-# GitHub Token (Optional - for API rate limits)
-GITHUB_TOKEN=your_github_token
-```
+Deployed on [Vercel](https://vercel.com). Set the environment variables from `.env.local.example` in the Vercel project settings and push to deploy.
 
 ## License
 
-This project is licensed under the MIT License.
-
-## Contact
-
-Connect with me for AI consulting, collaboration, or questions about educational technology:
-
-- Email: andrisgonzalis@gmail.com
-- GitHub: [@andres-ai-dev](https://github.com/andres-ai-dev)
-
----
-
-Built by Andres Gonzales
+MIT
