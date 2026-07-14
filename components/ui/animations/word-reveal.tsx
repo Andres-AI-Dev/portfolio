@@ -39,6 +39,17 @@ export default function WordReveal({
         type: "spring",
         damping: 12,
         stiffness: 100,
+        // The underdamped spring overshoots past its target, which would drive
+        // filter: blur() into negative values (blur(-0.94px)) and flood the
+        // console with "Invalid keyframe value" warnings. Give blur its own
+        // non-overshooting tween so it lands cleanly at 0px while y keeps its
+        // springy bounce.
+        filter: {
+          delay: i * delay,
+          type: "tween",
+          ease: "easeOut",
+          duration: 0.4,
+        },
       },
     }),
   };

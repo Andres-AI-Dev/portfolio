@@ -11,13 +11,16 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { Fragment } from "react";
 
+// Shared description so the metadata and the on-page heading stay in sync.
+const DESCRIPTION =
+  "Technical documentation, guides, and notes on AI, machine learning, and educational technology.";
+
 // Configure metadata for SEO and social sharing so the docs index has a
 // unique title/description instead of falling back to the generic root title.
 export const metadata: Metadata = {
   title: "Docs | Andres Gonzales",
   applicationName: "Docs | Andres Gonzales",
-  description:
-    "Technical documentation, guides, and notes on AI, machine learning, and educational technology.",
+  description: DESCRIPTION,
   metadataBase: new URL(getBaseUrl("/docs")),
   alternates: {
     canonical: getBaseUrl("/docs"),
@@ -34,6 +37,23 @@ export default async function DocsPage() {
   return (
     <Fragment>
       <Header />
+      <Heading variant="default">
+        <MotionEffect
+          fade
+          blur="10px"
+          transition={{
+            duration: 0.2,
+            ease: "easeInOut",
+          }}
+          inView
+        >
+          <MainTitle
+            title="Docs"
+            description={DESCRIPTION}
+            className="mx-auto mt-6 mb-4 max-w-3xl px-4 sm:px-6 lg:px-8"
+          />
+        </MotionEffect>
+      </Heading>
 
       <div className="border-border bg-background relative min-h-[50vh] max-w-full border-t">
         <div className="mx-auto grid w-full max-w-5xl grid-cols-1 gap-4 px-3 py-10 md:grid-cols-3 lg:px-4 xl:px-0">

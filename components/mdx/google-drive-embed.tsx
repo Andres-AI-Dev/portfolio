@@ -13,7 +13,6 @@ export function GoogleDriveEmbed({
         src={`https://drive.google.com/file/d/${fileId}/preview`}
         title={title}
         allow="autoplay; fullscreen"
-        allowFullScreen
         className="h-full w-full"
       />
     </div>
