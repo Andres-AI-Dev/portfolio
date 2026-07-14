@@ -10,47 +10,46 @@ youtubeUrl: null
 githubUrl: "/blog/post/hcisd-ai-application"
 ---
 
-Currently an internal AI-powered application designed to help improve efficiency for administrators across Harlingen CISD, which serves over 16,000 students across more than 30 campuses.
+An internal AI-powered application designed to help improve efficiency for administrators across Harlingen CISD, which serves over 16,000 students across more than 30 campuses. The application is currently internal-only, with about 150+ administrators using it.
 
 ## Overview
 
-The HCISD AI Application is a district-wide platform that leverages cutting-edge AI technology to provide personalized learning experiences, administrative insights, and intelligent educational support.
+Teachers and staff across the district were using a fragmented mix of consumer AI tools, each with different security policies, capabilities, and no shared knowledge base. The HCISD AI Application consolidates that into one platform, with the district's own security, its own document connections, and access to multiple AI models through a unified API. It launched with administrators first, intentionally starting small to gather feedback and iterate before expanding to more users.
 
 ## Tech Stack
 
-- **Frontend**: React + Vite
-- **Backend**: Firebase (Auth, Firestore, Functions)
-- **AI Engine**: Google Vertex AI with Genkit
-- **Additional Services**: Google Workspace Integration
+- **Frontend**: React + Vite with TypeScript and Tailwind CSS
+- **Backend**: Firebase (Authentication, Firestore, Cloud Functions, Storage)
+- **AI**: Google Vertex AI, working directly with Vertex AI's APIs
+- **RAG**: Vertex AI's built-in RAG engine
+- **Authentication**: Role-based access driven by Microsoft/Outlook groups
 
-## Key Features
+## What Exists Today
 
-### For Students
-- Personalized AI tutoring and learning assistance
-- Instant feedback on assignments
-- Adaptive learning pathways
+The current release is internal-only and serves the district's administrators:
 
-### For Teachers
-- AI-powered lesson planning assistance
-- Automated grading support
-- Student progress analytics
+- **Chat interface**: A full conversational interface for administrators
+- **RAG grounded in district documents**: Answers are grounded in HCISD's own policies and internal documentation, ingested from Google Drive, Google Sites, PDFs, and district websites
+- **Real-time conversation storage**: Conversations and user data persist in Firestore
+- **Role-based access control**: Users are mapped to roles via Outlook groups, giving fine-grained control over access
+- **Clean, responsive UI**
+- **Hallucination safeguards**: Source citations, verification mechanisms, and confidence indicators help users know when to trust a response and when to verify
 
-### For Administrators
-- District-wide analytics dashboard
-- Resource allocation insights
-- Policy and guideline integration
+## How the RAG Works
 
-## Implementation Highlights
+Generic AI models don't know anything about HCISD's specific policies or procedures. The RAG pipeline solves this: internal documents are chunked and embedded through Vertex AI, stored and indexed in Vertex AI's RAG engine (with copies in Firebase Storage), and retrieved by semantic similarity at query time. Relevant chunks are injected into the prompt so responses are grounded in the district's actual documents, which reduces hallucinations. An administrator can ask "What's our policy on student device usage?" and get an accurate, sourced answer.
 
-- **TEKS Integration**: Aligned with Texas Essential Knowledge and Skills standards
-- **RAG with Weaviate**: Custom knowledge base incorporating district policies and internal documentation
-- **Multi-Agent Orchestration**: Role-based chat flows for different user types
-- **Google Workspace Integration**: Seamless connection with Google Drive and Sites
+## Roadmap
 
-## Impact
+These are planned but not yet built:
 
-Working with Dr. Jessica Hruska (HCISD Director of Innovative Practices) and external partners including Google's education team, this application is pioneering AI implementation in K-12 education in Texas.
+- **Teacher dashboard** with AI-powered lesson planning assistance
+- **TEKS integration**: Aligning teacher-facing features with Texas Essential Knowledge and Skills standards
+- **Student dashboard**: Designed to guide students toward answers rather than hand them over, using Google's LearnLM educational layer
+- **Multi-agent orchestration**
 
-## Current Status
+The plan is to expand to teachers next, then students, but only once each phase is solid.
 
-Active development and deployment across HCISD campuses, with ongoing collaboration with Region 16 ESC and Google for Education.
+## Collaboration
+
+Built in close collaboration with Dr. Jessica Hruska, HCISD's Director of Innovative Practices, whose support helped navigate the organizational side of bringing AI into the district.
