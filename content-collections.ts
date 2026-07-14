@@ -8,6 +8,7 @@ import {
 } from "@fumadocs/content-collections/configuration";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import { rehypeParseCodeBlocks } from "./shiki-rehype.mjs";
+import { rehypeVideoAttributes } from "./rehype-video.mjs";
 
 const docs = defineCollection({
   name: "docs",
@@ -25,7 +26,10 @@ const docs = defineCollection({
     seo: z.array(z.string()),
     pinned: z.boolean().optional().default(false),
   }),
-  transform: transformMDX,
+  transform: (document, context) =>
+    transformMDX(document, context, {
+      rehypePlugins: (plugins) => [...plugins, rehypeVideoAttributes],
+    }),
 });
 
 const metas = defineCollection({
@@ -56,6 +60,7 @@ const posts = defineCollection({
     const mdx = await compileMDX(context, document, {
       rehypePlugins: [
         rehypeParseCodeBlocks,
+        rehypeVideoAttributes,
         [
           rehypeAutolinkHeadings,
           {
@@ -112,7 +117,7 @@ const projects = defineCollection({
   }),
   transform: async (document, context) => {
     const mdx = await compileMDX(context, document, {
-      rehypePlugins: [rehypeParseCodeBlocks],
+      rehypePlugins: [rehypeParseCodeBlocks, rehypeVideoAttributes],
     });
     return {
       ...document,
@@ -138,7 +143,7 @@ const research = defineCollection({
   }),
   transform: async (document, context) => {
     const mdx = await compileMDX(context, document, {
-      rehypePlugins: [rehypeParseCodeBlocks],
+      rehypePlugins: [rehypeParseCodeBlocks, rehypeVideoAttributes],
     });
     return {
       ...document,

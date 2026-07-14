@@ -1,24 +1,15 @@
 import defaultMdxComponents from "fumadocs-ui/mdx";
 import { GoogleDriveEmbed } from "@/components/mdx/google-drive-embed";
 import type { MDXComponents } from "mdx/types";
-import type { ComponentProps } from "react";
 
+// Note: inline <video> in post bodies is authored as literal JSX, which MDX
+// compiles to a host element that bypasses this components map. Its autoplay /
+// loop / muted attributes are injected at compile time by rehypeVideoAttributes
+// (see content-collections.ts / rehype-video.mjs), not overridden here.
 export function getMDXComponents(components?: MDXComponents): MDXComponents {
   return {
     ...defaultMdxComponents,
     GoogleDriveEmbed,
-    video: (props: ComponentProps<"video">) => (
-      <video
-        className="my-6 h-auto w-full rounded-lg"
-        autoPlay
-        loop
-        muted
-        playsInline
-        controls
-        preload="metadata"
-        {...props}
-      />
-    ),
     ...components,
   };
 }
