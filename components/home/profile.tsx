@@ -1,4 +1,5 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import FirebaseIcon from "@/icons/firebase-icon";
 import { cn } from "@/lib/utils";
 import { Variants } from "framer-motion";
 import { UserIcon } from "lucide-react";
@@ -6,7 +7,6 @@ import { FC, memo } from "react";
 import { FaReact as ReactLogo } from "react-icons/fa";
 import {
   RiNextjsFill as NextJsLogo,
-  RiSupabaseFill as SupabaseLogo,
   RiTailwindCssFill as TailwindcssLogo,
 } from "react-icons/ri";
 import { InfiniteSlider } from "../ui/animations/infinite-slider";
@@ -61,7 +61,7 @@ const Profile: FC<ProfileProps> = memo(({ className }) => {
     },
     {
       name: "Firebase",
-      icon: SupabaseLogo, // Using same icon temporarily
+      icon: FirebaseIcon,
     },
   ];
 
