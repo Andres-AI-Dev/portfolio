@@ -32,6 +32,8 @@ const formSchema = z.object({
   message: z.string().min(10, {
     message: "Message must be at least 10 characters.",
   }),
+  // Honeypot: hidden from real users; bots that fill it are rejected server-side.
+  company: z.string().optional(),
 });
 
 export function ContactForm() {
@@ -45,6 +47,7 @@ export function ContactForm() {
       name: "",
       email: "",
       message: "",
+      company: "",
     },
   });
 
@@ -101,6 +104,18 @@ export function ContactForm() {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+        {/* Honeypot field: hidden from users, ignored by real submitters.
+            Bots that auto-fill it are rejected server-side. */}
+        <div aria-hidden="true" className="hidden">
+          <label htmlFor="company">Company</label>
+          <input
+            id="company"
+            type="text"
+            tabIndex={-1}
+            autoComplete="off"
+            {...form.register("company")}
+          />
+        </div>
         {/* Name input field */}
         <FormField
           control={form.control}
