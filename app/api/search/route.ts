@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 export async function GET(request: NextRequest) {
   try {
     const searchParams = request.nextUrl.searchParams;
-    const query = searchParams.get("query");
+    const query = searchParams.get("query")?.trim();
 
     if (!query) {
       return NextResponse.json(
@@ -13,7 +13,9 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    const results = await searchPosts(query);
+    // Cap query length: the fuzzy matcher's cost grows with query size, so an
+    // unbounded query lets a single request pin the CPU.
+    const results = await searchPosts(query.slice(0, 100));
     return NextResponse.json(results);
   } catch (error) {
     console.error("Search error:", error);
