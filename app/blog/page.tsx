@@ -1,4 +1,3 @@
-import SingleBlogPostLoading from "@/components/blog/single-blog-post/loading";
 import SingleBlogPost from "@/components/blog/single-blog-post/main";
 import Footer from "@/components/footer/main";
 import Header from "@/components/header/main";
@@ -11,7 +10,7 @@ import { source } from "@/lib/source";
 import { getBaseUrl } from "@/lib/utils";
 import { HeadType } from "@/types";
 import { Metadata } from "next";
-import { Fragment, Suspense } from "react";
+import { Fragment } from "react";
 
 // Validate SEO configuration to ensure all required fields are present
 // This helps catch missing or incomplete SEO setup early
@@ -40,10 +39,6 @@ export const metadata: Metadata = {
   },
 };
 
-export async function generateStaticParams() {
-  return source.generateParams();
-}
-
 export default async function BlogPage() {
   const allPosts = source
     .getPages()
@@ -63,7 +58,7 @@ export default async function BlogPage() {
           fade
           blur="10px"
           transition={{
-            duration: 0.5,
+            duration: 0.2,
             ease: "easeInOut",
           }}
           inView
@@ -105,11 +100,9 @@ export default async function BlogPage() {
                   fade
                   zoom
                   inView
-                  delay={0.1 + index * 0.1}
+                  delay={Math.min(index * 0.05, 0.2)}
                 >
-                  <Suspense fallback={<SingleBlogPostLoading />}>
-                    <SingleBlogPost post={post.data} />
-                  </Suspense>
+                  <SingleBlogPost post={post.data} />
                 </MotionEffect>
               ))}
             </div>
@@ -134,11 +127,9 @@ export default async function BlogPage() {
                 fade
                 zoom
                 inView
-                delay={0.1 + index * 0.1}
+                delay={Math.min(index * 0.05, 0.2)}
               >
-                <Suspense fallback={<SingleBlogPostLoading />}>
-                  <SingleBlogPost post={post.data} />
-                </Suspense>
+                <SingleBlogPost post={post.data} />
               </MotionEffect>
             ))}
           </div>

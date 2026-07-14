@@ -6,6 +6,7 @@ import Header from "@/components/header/main";
 import Heading from "@/components/heading/main";
 import { MotionEffect } from "@/components/ui/animations/motion-effect";
 import ScrollToTopButton from "@/components/ui/scroll-to-top-button";
+import { AUTHOR } from "@/config/seo";
 import { source } from "@/lib/source";
 import { getBaseUrl } from "@/lib/utils";
 import { getMDXComponents } from "@/mdx-components";
@@ -21,23 +22,35 @@ interface Props {
   }>;
 }
 
+export function generateStaticParams() {
+  return source.getPages().map((page) => ({
+    slug: page.slugs[0],
+  }));
+}
+
 export async function generateMetadata({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  // const post = allPosts.find((post) => post._meta.path === slug);
   const post = source.getPage([slug]);
-  if (!post) notFound();
   if (!post) {
     return notFound();
   }
+
+  const description = post.data.description
+    ? post.data.description.length > 160
+      ? `${post.data.description.slice(0, 160)}…`
+      : post.data.description
+    : "Read this insightful blog post.";
+  const image = Array.isArray(post.data.image)
+    ? post.data.image[0]
+    : post.data.image;
+
   return {
     title: post.data.title || "Blog Post",
-    description:
-      post.data.description.slice(0, 100) + ("..." as string) ||
-      "Read this insightful blog post.",
+    description,
     keywords: post.data.seo?.join(", ") || "blog, mdx, next.js",
     alternates: {
       canonical: getBaseUrl(`blog/post/${slug}`),
@@ -48,10 +61,10 @@ export async function generateMetadata({
     },
     openGraph: {
       title: post.data.title,
-      description: post.data.description.slice(0, 100) + ("..." as string),
+      description,
       images: [
         {
-          url: Array.isArray(post.data.image) ? post.data.image[0] : post.data.image,
+          url: image,
           width: 1200,
           height: 630,
           alt: post.data.title,
@@ -64,8 +77,8 @@ export async function generateMetadata({
     twitter: {
       card: "summary_large_image",
       title: post.data.title,
-      description: post.data.description.slice(0, 100) + ("..." as string),
-      images: Array.isArray(post.data.image) ? [post.data.image[0]] : [post.data.image],
+      description,
+      images: [image],
     },
   };
 }
@@ -77,8 +90,26 @@ export default async function BlogPost({ params }: Props) {
     return notFound();
   }
 
+  const url = getBaseUrl(`blog/post/${slug}`);
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: post.data.title,
+    datePublished: post.data.date,
+    author: {
+      "@type": "Person",
+      name: post.data.author || AUTHOR.name,
+    },
+    url,
+    mainEntityOfPage: url,
+  };
+
   return (
     <Fragment>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
       <Header showProgressBar={true} />
       <Heading variant="blog">
         <MotionEffect
