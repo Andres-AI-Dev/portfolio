@@ -2,21 +2,12 @@
 
 import Card from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
+import { PhotoProvider, PhotoView } from "react-photo-view";
 import { FadeUp } from "../ui/animations/fade-up";
 import { MotionEffect } from "../ui/animations/motion-effect";
 import "react-photo-view/dist/react-photo-view.css";
-
-const PhotoProvider = dynamic(
-  () => import("react-photo-view").then((mod) => mod.PhotoProvider),
-  { ssr: false },
-);
-const PhotoView = dynamic(
-  () => import("react-photo-view").then((mod) => mod.PhotoView),
-  { ssr: false },
-);
 
 interface Props {
   className?: string;
