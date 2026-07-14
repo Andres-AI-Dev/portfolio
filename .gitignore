@@ -44,3 +44,6 @@ CLAUDE.md
 # local tooling
 .playwright-mcp
 .serena
+
+# local media working directory (not served, referenced nowhere)
+images_videos
