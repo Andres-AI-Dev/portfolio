@@ -76,7 +76,6 @@ export default async function AboutPage() {
                   title="Cover Image"
                   alt="Cover Image"
                   src="/images/cover.jpg"
-                  layout="responsive"
                   width={1200}
                   height={630}
                   quality={100}
