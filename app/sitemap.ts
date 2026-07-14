@@ -1,5 +1,5 @@
 import { getBaseUrl } from "@/lib/utils";
-import { allPosts } from "content-collections";
+import { allDocs, allPosts } from "content-collections";
 import type { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -8,6 +8,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: getBaseUrl(`/blog/post/${post._meta.path}`),
     lastModified: new Date(post.date),
     changeFrequency: "monthly" as const, // Blog posts typically don't change often
+    priority: 0.5,
+  }));
+
+  // Generate sitemap entries for docs posts
+  const docsPosts = allDocs.map((doc) => ({
+    url: getBaseUrl(`/docs/posts/${doc._meta.path}`),
+    lastModified: new Date(doc.date),
+    changeFrequency: "monthly" as const, // Docs posts typically don't change often
     priority: 0.5,
   }));
 
@@ -32,7 +40,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      url: getBaseUrl("/research"),
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.9,
+    },
+    {
       url: getBaseUrl("/blog"),
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    },
+    {
+      url: getBaseUrl("/docs"),
       lastModified: new Date(),
       changeFrequency: "weekly" as const,
       priority: 0.8,
@@ -43,13 +63,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: 0.7,
     },
-    {
-      url: getBaseUrl("/resume"),
-      lastModified: new Date(),
-      changeFrequency: "weekly" as const,
-      priority: 0.7,
-    },
   ];
 
-  return [...staticPages, ...blogPosts];
+  return [...staticPages, ...blogPosts, ...docsPosts];
 }
