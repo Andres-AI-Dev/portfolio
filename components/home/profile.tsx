@@ -1,7 +1,6 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import FirebaseIcon from "@/icons/firebase-icon";
 import { cn } from "@/lib/utils";
-import { Variants } from "framer-motion";
 import { UserIcon } from "lucide-react";
 import { FC, memo } from "react";
 import { FaReact as ReactLogo } from "react-icons/fa";
@@ -19,33 +18,6 @@ interface ProfileProps {
 }
 
 const Profile: FC<ProfileProps> = memo(({ className }) => {
-  const container: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.15 },
-    },
-  };
-
-  const child: Variants = {
-    hidden: {
-      opacity: 0,
-      filter: "blur(10px)",
-      y: 20,
-    },
-    visible: (i: number) => ({
-      opacity: 1,
-      filter: "blur(0px)",
-      y: 0,
-      transition: {
-        delay: i * 0.15,
-        type: "spring",
-        damping: 12,
-        stiffness: 100,
-      },
-    }),
-  };
-
   const techStack = [
     {
       name: "React",

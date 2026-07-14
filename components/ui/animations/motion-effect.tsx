@@ -108,6 +108,17 @@ const MotionEffect = React.forwardRef<HTMLDivElement, MotionEffectProps>(
           transition={{
             ...transition,
             delay: (transition?.delay ?? 0) + delay,
+            // Springs overshoot their target, which would drive filter: blur()
+            // below 0 and flood the console with "Invalid keyframe value"
+            // warnings — give blur its own non-overshooting tween.
+            ...(blur && {
+              filter: {
+                type: "tween",
+                ease: "easeOut",
+                duration: 0.4,
+                delay: (transition?.delay ?? 0) + delay,
+              },
+            }),
           }}
           className={className}
           {...props}
