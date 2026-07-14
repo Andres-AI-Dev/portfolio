@@ -24,12 +24,24 @@ const rateLimitStore = new Map<string, number[]>();
 function isRateLimited(ip: string): boolean {
   const now = Date.now();
   const windowStart = now - RATE_LIMIT_WINDOW_MS;
-  const timestamps = (rateLimitStore.get(ip) ?? []).filter(
-    (ts) => ts > windowStart,
-  );
+
+  // Prune stale entries so the store doesn't grow unbounded on long-lived
+  // instances: re-filter every IP against the current window and drop any
+  // whose timestamps have all aged out. Cheap for the low request volume this
+  // endpoint sees.
+  for (const [key, times] of rateLimitStore) {
+    const fresh = times.filter((ts) => ts > windowStart);
+    if (fresh.length === 0) {
+      rateLimitStore.delete(key);
+    } else {
+      rateLimitStore.set(key, fresh);
+    }
+  }
+
+  // Pruning above already refreshed this IP's entry within the window.
+  const timestamps = rateLimitStore.get(ip) ?? [];
 
   if (timestamps.length >= RATE_LIMIT_MAX) {
-    rateLimitStore.set(ip, timestamps);
     return true;
   }
 

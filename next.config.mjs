@@ -28,6 +28,28 @@ const nextConfig = {
           },
         ],
       },
+      {
+        // Images/videos are content-stable (fingerprinted or never replaced in
+        // place), so they can be cached aggressively and treated as immutable.
+        source: "/images/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+      {
+        // Files like resume.pdf may be replaced in place at the same URL, so
+        // keep the cache short and force revalidation instead of immutable.
+        source: "/files/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=3600, must-revalidate",
+          },
+        ],
+      },
     ];
   },
 };
