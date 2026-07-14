@@ -25,7 +25,7 @@ const projects: ProjectSubNavType[] = [
       "Role-based forms, approvals, and AI invoice matching",
       30,
     ),
-    image: "/images/posts/hcisd-dashboard/2-cover.gif",
+    image: "/images/posts/hcisd-dashboard/2-cover.webp",
     href: "/blog/post/hcisd-dashboard-business-office",
     icon: LayoutGridIcon,
   },

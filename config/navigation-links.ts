@@ -29,7 +29,7 @@ const navigationLinks: NavigationLink[] = [
         icon: AboutMeIcon,
       },
       {
-        href: "/files/Andres's Resume.pdf",
+        href: "/files/resume.pdf",
         label: "Resume",
         description: truncateDescription("View my resume", 30),
         icon: ResumeIcon,

@@ -19,14 +19,6 @@ const HEAD: HeadType[] = [
     slug: "/about",
   },
   {
-    page: "Story",
-    title: truncateTitle("Story | Andres Gonzales"),
-    description: truncateDescription(
-      "Learn about Andres's journey from teaching chemistry to building AI systems for education and robotics research.",
-    ),
-    slug: "/story",
-  },
-  {
     page: "Blog",
     title: truncateTitle("Blog | AI, ML, and EdTech | Andres Gonzales"),
     description: truncateDescription("Thoughts and insights on AI, machine learning, and educational technology"),
@@ -37,6 +29,14 @@ const HEAD: HeadType[] = [
     title: truncateTitle("Projects | Andres Gonzales"),
     description: truncateDescription("Showcasing AI applications, research projects, and educational technology solutions"),
     slug: "/projects",
+  },
+  {
+    page: "Docs",
+    title: truncateTitle("Docs | Andres Gonzales"),
+    description: truncateDescription(
+      "Technical documentation, guides, and notes on AI, machine learning, and educational technology.",
+    ),
+    slug: "/docs",
   },
   {
     page: "Research",
