@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
 import { MusicIcon, X } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 import { Spotify } from "react-spotify-embed";
 
 interface Props {
@@ -20,6 +20,9 @@ interface Props {
   playlistUrl?: string;
 }
 
+// Returns false during SSR and the initial hydration render, true afterwards.
+const emptySubscribe = () => () => {};
+
 const Playlist = ({
   className,
   title = "My Daily Running Playlist",
@@ -27,11 +30,11 @@ const Playlist = ({
   playlistUrl = "https://open.spotify.com/playlist/28OAQven2H4fLmFsNEeVcY?si=z7Bj-mocSuGi2vd2CN0sFQ",
 }: Props) => {
   const [isLoading, setIsLoading] = useState(true);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const mounted = useSyncExternalStore(
+    emptySubscribe,
+    () => true,
+    () => false,
+  );
 
   if (!mounted) {
     return (

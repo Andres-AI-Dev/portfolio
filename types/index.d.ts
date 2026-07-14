@@ -10,8 +10,7 @@ export type HeadType = {
 
 export type AuthorType = {
   name: string;
-  twitterUrl: string;
-  twitterAddress: string;
+  githubUrl: string;
   email: string;
 };
 
@@ -42,7 +41,6 @@ export type PostType = {
   content: string;
   mdx: MDXRemoteSerializeResult;
   data: {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     [key: string]: any;
   };
 };

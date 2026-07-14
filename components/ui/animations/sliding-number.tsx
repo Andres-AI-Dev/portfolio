@@ -125,12 +125,19 @@ const SlidingNumber = React.forwardRef<HTMLSpanElement, SlidingNumberProps>(
     });
     const isInView = !inView || inViewResult;
 
-    const prevNumberRef = React.useRef<number>(0);
-
     const effectiveNumber = React.useMemo(
       () => (!isInView ? 0 : Math.abs(Number(number))),
       [number, isInView],
     );
+
+    // Track the previous in-view value by adjusting state during render (the
+    // React-recommended alternative to reading/writing a ref while rendering).
+    const [prevNumber, setPrevNumber] = React.useState(0);
+    const [committedNumber, setCommittedNumber] = React.useState(0);
+    if (isInView && committedNumber !== effectiveNumber) {
+      setPrevNumber(committedNumber);
+      setCommittedNumber(effectiveNumber);
+    }
 
     const numberStr = effectiveNumber.toString();
     let [newIntStr] = numberStr.split(".");
@@ -138,7 +145,7 @@ const SlidingNumber = React.forwardRef<HTMLSpanElement, SlidingNumberProps>(
     newIntStr =
       padStart && newIntStr.length === 1 ? "0" + newIntStr : newIntStr;
 
-    const prevStr = prevNumberRef.current.toString();
+    const prevStr = prevNumber.toString();
     let [prevIntStr = ""] = prevStr.split(".");
     const [, prevDecStr = ""] = prevStr.split(".");
     prevIntStr =
@@ -156,10 +163,6 @@ const SlidingNumber = React.forwardRef<HTMLSpanElement, SlidingNumberProps>(
         ? prevDecStr.slice(0, newDecStr.length)
         : prevDecStr.padEnd(newDecStr.length, "0");
     }, [prevDecStr, newDecStr]);
-
-    React.useEffect(() => {
-      if (isInView) prevNumberRef.current = effectiveNumber;
-    }, [effectiveNumber, isInView]);
 
     const intDigitCount = newIntStr.length;
     const intPlaces = React.useMemo(

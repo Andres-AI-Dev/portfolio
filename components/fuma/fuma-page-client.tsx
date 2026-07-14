@@ -26,6 +26,7 @@ import {
   useMemo,
   useRef,
   useState,
+  useSyncExternalStore,
   type ComponentProps,
   type HTMLAttributes,
 } from "react";
@@ -34,6 +35,9 @@ const TocPopoverContext = createContext<{
   open: boolean;
   setOpen: (open: boolean) => void;
 }>("TocPopoverContext");
+
+// Returns false during SSR and the initial hydration render, true afterwards.
+const emptySubscribe = () => () => {};
 
 export function TocPopoverTrigger({
   items,
@@ -177,7 +181,9 @@ export function TocPopover(props: HTMLAttributes<HTMLDivElement>) {
     return () => {
       window.removeEventListener("click", onClick);
     };
-  }, [onClick]);
+    // `onClick` is a stable `useEffectEvent` handler, so it is intentionally
+    // omitted from the dependency array (per the rules of `useEffectEvent`).
+  }, []);
 
   return (
     <div
@@ -249,12 +255,15 @@ export function PageArticle(props: HTMLAttributes<HTMLElement>) {
 
 export function LastUpdate(props: { date: Date }) {
   const { text } = useI18n();
-  const [date, setDate] = useState("");
-
-  useEffect(() => {
-    // to the timezone of client
-    setDate(props.date.toLocaleDateString());
-  }, [props.date]);
+  // Render nothing on the server / first hydration pass, then format in the
+  // client's timezone once mounted. Deriving during render avoids a hydration
+  // mismatch without synchronizing via an effect.
+  const mounted = useSyncExternalStore(
+    emptySubscribe,
+    () => true,
+    () => false,
+  );
+  const date = mounted ? props.date.toLocaleDateString() : "";
 
   return (
     <p className="text-fd-muted-foreground text-sm">

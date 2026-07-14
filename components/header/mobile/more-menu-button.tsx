@@ -16,16 +16,19 @@ import {
   EllipsisVerticalIcon as MoreMenuIcon,
   SearchIcon,
 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 import { ThemeSwitcher } from "../shared/theme-switcher";
 
-const MoreMenuButton = () => {
-  const [mounted, setMounted] = useState(false);
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+// Returns false during SSR and the initial hydration render, true afterwards.
+const emptySubscribe = () => () => {};
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+const MoreMenuButton = () => {
+  const mounted = useSyncExternalStore(
+    emptySubscribe,
+    () => true,
+    () => false,
+  );
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const handleSearchClick = () => {
     // Dispatch a custom event to trigger the search dialog

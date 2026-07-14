@@ -18,16 +18,19 @@ interface ThemeSwitcherProps {
   className?: string;
 }
 
+// Returns false during SSR and the initial hydration render, true afterwards.
+const emptySubscribe = () => () => {};
+
 export function ThemeSwitcher({
   variant = "dropdown",
   className,
 }: ThemeSwitcherProps) {
   const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = React.useState(false);
-
-  React.useEffect(() => {
-    setMounted(true);
-  }, []);
+  const mounted = React.useSyncExternalStore(
+    emptySubscribe,
+    () => true,
+    () => false,
+  );
 
   const toggleTheme = React.useCallback(() => {
     setTheme(theme === "dark" ? "light" : "dark");

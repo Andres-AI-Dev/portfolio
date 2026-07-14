@@ -24,8 +24,12 @@ import {
   useEffect,
   useRef,
   useState,
+  useSyncExternalStore,
   type KeyboardEvent,
 } from "react";
+
+// Returns false during SSR and the initial hydration render, true afterwards.
+const emptySubscribe = () => () => {};
 
 const SearchButton = ({ onOpenChange }: { onOpenChange?: () => void }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -67,7 +71,6 @@ const SearchButton = ({ onOpenChange }: { onOpenChange?: () => void }) => {
 
   const {
     data: results,
-    isRefetching,
     isLoading,
     error: queryError,
   } = useQuery({
@@ -108,7 +111,10 @@ const SearchButton = ({ onOpenChange }: { onOpenChange?: () => void }) => {
     retry: false,
   });
 
-  const displayedResults = isRefetching ? prevResultsRef.current : results;
+  // React Query retains the previous successful `data` while a refetch is in
+  // flight, and `placeholderData` seeds it for brand-new query keys, so `results`
+  // already carries the prior results during loading — no ref read needed here.
+  const displayedResults = results;
 
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     switch (e.key) {
@@ -171,11 +177,11 @@ const SearchButton = ({ onOpenChange }: { onOpenChange?: () => void }) => {
     }
   }, [isOpen]);
 
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const mounted = useSyncExternalStore(
+    emptySubscribe,
+    () => true,
+    () => false,
+  );
 
   if (!mounted) {
     return (
