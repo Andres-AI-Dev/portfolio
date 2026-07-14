@@ -67,7 +67,7 @@ export const metadata: Metadata = {
   authors: [
     {
       name: AUTHOR.name,
-      url: AUTHOR.twitterUrl,
+      url: AUTHOR.githubUrl,
     },
   ],
   creator: AUTHOR.name,
@@ -128,7 +128,6 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: page.title,
     description: page.description,
-    site: AUTHOR.twitterAddress,
     images: [
       {
         url: OPEN_GRAPH.twitterImage,
@@ -138,8 +137,17 @@ export const metadata: Metadata = {
         type: "image/png",
       },
     ],
-    creator: AUTHOR.twitterAddress,
   },
+};
+
+// Person JSON-LD structured data for search engines and rich results
+// This describes the site author as a schema.org Person entity
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: AUTHOR.name,
+  url: getBaseUrl(),
+  sameAs: [AUTHOR.githubUrl],
 };
 
 // Root layout component that wraps all pages
@@ -162,6 +170,11 @@ export default function RootLayout({
         )}
         suppressHydrationWarning={true}
       >
+        {/* Person structured data (JSON-LD) for SEO and rich results */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
         {/* URL query state management provider */}
         <NuqsAdapter>
           {/* React Query provider for data fetching */}
@@ -178,8 +191,9 @@ export default function RootLayout({
                 {/* Main content */}
                 {children}
               </RootProvider>
-              {/* Vercel Analytics for tracking */}
-              <Analytics />
+              {/* Vercel Analytics — only on Vercel to avoid 404s/console
+                  errors when self-hosted or running locally */}
+              {process.env.VERCEL && <Analytics />}
               {/* Tailwind CSS breakpoint indicator (development only) */}
               <TailwindIndicator />
             </ThemeProvider>
