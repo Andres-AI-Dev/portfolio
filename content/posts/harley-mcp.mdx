@@ -1,0 +1,134 @@
+---
+title: "The Harley MCP: Use HCISD's Internal AI Inside Gemini, ChatGPT, and Claude"
+description: "Why I built an MCP server for Harley. Meet people in their preferred AI, keep the internal corpus secure behind district sign-in, and make Harley part of any workflow"
+image:
+  - "/images/posts/harley-mcp/gemini-save-custom-app.png"
+  - "/images/posts/harley-mcp/gemini-demo.webp"
+  - "/images/posts/harley-mcp/chatgpt-demo.webp"
+  - "/images/posts/harley-mcp/claude-demo.webp"
+author: "Andres Gonzales"
+authorAvatar: "/images/avatar.jpg"
+date: "2026-07-30"
+category: "Projects"
+tags: ["HCISD", "Harley", "MCP", "AI", "OAuth", "Gemini", "ChatGPT", "Claude", "EdTech"]
+seo:
+  [
+    "Harley MCP server",
+    "MCP server school district",
+    "Model Context Protocol OAuth",
+    "internal AI connector",
+    "Gemini custom apps",
+    "ChatGPT plugins MCP",
+    "Claude custom connector",
+    "HCISD Harley",
+    "district AI integration",
+    "internal document search AI",
+  ]
+---
+
+# The Harley MCP: Use HCISD's Internal AI Inside Gemini, ChatGPT, and Claude
+
+## TL;DR
+
+- **I built an MCP server for Harley**. Connect it to Gemini, ChatGPT, or Claude with a URL, sign in with your HCISD account, and Harley is part of your workflow
+- **I noticed people live in their preferred AI**. Gemini users stay in Gemini, ChatGPT users stay in ChatGPT, Claude users stay in Claude. So instead of gating Harley behind another website and another login, I brought Harley to them
+- **One tool, on purpose**. `ask_harley` asks Harley directly and returns a finished, cited answer. Support for direct document search is built in, but I deliberately did not expose it. More on that below
+- **Secure by design**. OAuth with your district account. If you have access to internal Harley, you have access to the MCP. If you don't, you don't
+- **Up to date with the protocol**. Built on the latest MCP spec that Anthropic and the MCP team just shipped
+
+---
+
+## See It in Action
+
+Same Harley, three different homes. And to make it a fair test, I gave Gemini, ChatGPT, and Claude the exact same question:
+
+> Using the Harley MCP, can you answer this question: A student was caught vaping in the bathroom. What specific incident and action codes should I use for this referral, and is there anything I need to watch out for when entering it? Search through our internal database.
+
+All three came back with the same answer: **Incident Code 67**. And that's correct. Each one used the `ask_harley` tool, Harley searched the internal database, and it came back with the specific code plus the guidelines to watch out for when entering the referral.
+
+Here's what makes this a great thing. The document behind that answer lives in our internal database, and internal Harley is the only tool with access to it. If you asked Gemini, ChatGPT, or Claude that same question on their own, they would come up empty, because that document is unavailable on the public web. With the MCP, you're getting straight information from the internal database, inside whatever AI you already use.
+
+### Gemini
+
+<video src="/images/posts/harley-mcp/gemini-demo.mp4" poster="/images/posts/harley-mcp/gemini-demo.webp" />
+
+![Harley enabled as a custom app for Gemini Spark](/images/posts/harley-mcp/gemini-spark-custom-app.png)
+
+### ChatGPT
+
+<video src="/images/posts/harley-mcp/chatgpt-demo.mp4" poster="/images/posts/harley-mcp/chatgpt-demo.webp" />
+
+![Harley in ChatGPT](/images/posts/harley-mcp/chatgpt-plugin.png)
+
+### Claude
+
+<video src="/images/posts/harley-mcp/claude-demo.mp4" poster="/images/posts/harley-mcp/claude-demo.webp" />
+
+![Harley as a Claude connector](/images/posts/harley-mcp/claude-connector.png)
+
+## Everyone Already Has a Favorite AI
+
+Here is something I've noticed: most people enjoy working in their preferred AI UI. We have the Gemini users, the ChatGPT users, and the Claude users. There's Grok and other AI products out there too, but those are the big three, and people are loyal to theirs. It's just the way things are.
+
+So I asked myself a simple question. I've built internal Harley for HCISD, and it's such a good tool. Why would I want to gate it behind yet another website? Another tab, another login, another place to go. People are already comfortable where they are.
+
+The answer is: I don't. That's what MCP is for.
+
+## What the Harley MCP Is
+
+The **Harley MCP** is a remote [Model Context Protocol](https://modelcontextprotocol.io) server that packages internal Harley so you can use it from inside whatever AI you already work in. You add it via a URL, sign in with your HCISD account, and boom. Harley is in your workflow.
+
+![Adding Harley as a custom app in Gemini](/images/posts/harley-mcp/gemini-save-custom-app.png)
+
+While you're working in Gemini, ChatGPT, or Claude, it's nice to have a corpus you can search through that's always on and always has your internal documents. Harley has access to a corpus that no other AI company has access to: HCISD's internal documents. The MCP makes that available in your preferred AI, without Harley giving up control of the data.
+
+## One Tool, On Purpose
+
+I kept the surface intentionally small.
+
+- **`ask_harley` is the tool**. You ask, and Harley runs its full pipeline on the server side. Retrieval, district context, the works. What comes back is a finished, cited answer that no other AI could ever give you, because no other AI has Harley's corpus
+- **I built support for direct document search, but I left it off**. There's a `search_hcisd_docs` tool that would let your AI search through internal HCISD documents itself. I deliberately kept it out of the server for security purposes. Handing an outside AI direct access to our internal documents is just not good practice. If HCISD admins ever want to turn it on, the support is already there and it's a quick change
+
+The best practice is simple: ask Harley first. Whatever it is you want to know, you ask, and Harley comes back with a cited answer. Our internal database is internal for a reason, so everything flows through Harley on the server side.
+
+At the end of the day, what matters most about this server is simple: it's a way for you to get access to a specific tool, Harley, which has access to a specific corpus, **safely and securely**. That's the whole point.
+
+## Security First
+
+The MCP uses **OAuth** backed by district sign-in. Everyone who has access to internal Harley has access to this. Nobody else does.
+
+The flow is exactly what you'd hope:
+
+1. Add the Harley MCP to Gemini, ChatGPT, or Claude via its URL
+2. Sign in with your HCISD account
+3. Done. Harley's tools show up in your AI
+
+No API keys floating around. No shared passwords. Access is enforced at the organization level, and everything Harley answers with respects the same access rules Harley already enforces internally.
+
+## Up to Date With the Protocol
+
+MCP is moving fast. Anthropic and the MCP team just released the [2026-07-28 spec update](https://blog.modelcontextprotocol.io/posts/2026-07-28/), the biggest revision of the protocol yet, and [Claude is adopting it](https://claude.com/blog/bringing-mcp-2026-07-28-to-claude). The Harley MCP follows the current protocol and its authorization best practices, so it works as a first-class connector across all three clients.
+
+## Why This Matters Beyond HCISD
+
+If other districts or businesses have created their custom AI and want to enforce it at the organizational level, adoption is hard. People have to own it. The organization has to own it. One of the ways to get there is to offer something the big AI companies can't offer: **your** internal knowledge, in **their** interface.
+
+That's the play here. Harley slots in right alongside whichever AI your people already love, and on top of it they gain the corpus only your organization has.
+
+For staff, this is honestly a quality of life update. You don't change how you work. Harley just shows up where you already are.
+
+## How This Connects to the Rest of Harley
+
+If you've followed along, you've seen Harley grow from the [public chatbot on hcisd.org](/blog/post/harley-public-launch) to [invoice extraction inside the HCISD Dashboard](/blog/post/hcisd-dashboard-business-office). The MCP is the next surface: same AI infrastructure, same security posture, now available inside every major AI interface.
+
+Public Harley helps the community find answers. Dashboard Harley helps staff move work forward. **MCP Harley meets you in your own workflow.**
+
+## Connect
+
+Questions about building an MCP server for your organization's internal AI? Want to talk OAuth flows, MCP connectors, or getting district knowledge into the tools people already use?
+
+- Work Email: andres.gonzales@hcisd.org
+- Personal Email: andrisgonzalis@gmail.com
+- GitHub: [@andres-ai-dev](https://github.com/andres-ai-dev)
+
+Always happy to chat about AI, education technology, and making district tools easier to use.
