@@ -76,7 +76,7 @@ const Profile: FC<ProfileProps> = memo(({ className }) => {
       >
         <div className="space-y-2">
           <p className="text-foreground text-xl font-semibold">
-            AI Systems Architect/Engineer & Researcher
+            Forward Deployed AI Engineer • Co-Founder @ Jolt Innovation
           </p>
         </div>
       </MotionEffect>
